@@ -1,6 +1,6 @@
 // 只需要改這一行：部署 Apps Script 後，把網址（結尾 /exec）貼在這裡。
 // 空白時為試用模式：簡報與問卷都顯示示範數字，不會送出資料。
-const API_URL = "";
+const API_URL = "https://script.google.com/macros/s/AKfycbwasPYD2QEGbmexkp91rSts8Z8Dqw2tZLlA__W0qZEPV_aFVeGQKQtcxsJ3LsiD6p6f/exec";
 
 const GROUPS = [
   {key:"emotion",  name:"情緒", cls:"emo", items:["容易生氣、煩躁","焦慮、緊張","難過、低落","課業升學壓力大","不說出自己的感受","沒有明顯困擾"]},
