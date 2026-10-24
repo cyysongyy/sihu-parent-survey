@@ -6,7 +6,7 @@
  *
  * 改程式後要「管理部署作業 → 編輯 → 新版本」才會生效。
  */
-const ADMIN_PIN = '2026';   // ← 清除紀錄用的密碼，請改成你自己的
+const ADMIN_PIN = '1204';   // ← 清除紀錄用的密碼，請改成你自己的
 const SHEET_NAME = '回覆';
 const ARCHIVE_NAME = '已清除';
 const HEADERS = ['時間', '情緒', '行為', '人際'];
