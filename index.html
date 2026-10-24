@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>親職教育 家長小問卷</title>
+<style>
+:root{--bg:#F6F8F7;--card:#fff;--ink:#1F2A3A;--sub:#5B6776;--line:#DCE3E1;--emo:#2A7F7A;--beh:#9A5B17;--soc:#2A5C8A;--on:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-size:18px;line-height:1.5}
+.wrap{max-width:560px;margin:0 auto;padding:20px 16px 120px}
+h1{font-size:26px;margin:8px 0 4px}
+.lead{color:var(--sub);margin:0 0 20px;font-size:16px}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin-bottom:16px}
+h2{font-size:20px;margin:0 0 4px}
+.hint{color:var(--sub);font-size:15px;margin:0 0 12px}
+.opts{display:flex;flex-direction:column;gap:10px}
+label.opt{display:flex;align-items:center;gap:12px;min-height:52px;padding:10px 14px;border:2px solid var(--line);border-radius:12px;cursor:pointer;background:var(--card)}
+label.opt input{width:22px;height:22px;flex:none;accent-color:var(--c)}
+label.opt:has(input:checked){border-color:var(--c);background:color-mix(in srgb,var(--c) 10%,var(--card))}
+#emo{--c:var(--emo)} #beh{--c:var(--beh)} #soc{--c:var(--soc)} #pri,#grade{--c:var(--ink)}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px))}
+.bar div{max-width:560px;margin:0 auto}
+button{width:100%;min-height:56px;border:0;border-radius:12px;background:var(--ink);color:var(--card);font:inherit;font-weight:700;font-size:20px;cursor:pointer}
+button:disabled{opacity:.4}
+.done{text-align:center;padding:60px 16px}
+.done h1{font-size:30px}
+.err{color:#B3261E;font-size:15px;margin-top:8px;text-align:center}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141A22;--card:#1E2631;--ink:#EDF1F5;--sub:#9AA6B4;--line:#33404F;--emo:#5CC4BD;--beh:#E9B872;--soc:#7DB4E6}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+<h1>家長小問卷</h1>
+<p class="lead">約 1 分鐘，不記名。想一想孩子最近一個月的情況，有的就勾。</p>
+
+<section id="emo"><h2 style="color:var(--emo)">情緒</h2><p class="hint">可複選</p><div class="opts" data-key="emotion"></div></section>
+<section id="beh"><h2 style="color:var(--beh)">行為</h2><p class="hint">可複選</p><div class="opts" data-key="behavior"></div></section>
+<section id="soc"><h2 style="color:var(--soc)">人際</h2><p class="hint">可複選</p><div class="opts" data-key="social"></div></section>
+
+<section id="pri"><h2>最想先改善哪一類？</h2><p class="hint">單選</p><div class="opts" data-key="priority" data-single="1"></div></section>
+<section id="grade"><h2>孩子年級</h2><p class="hint">單選</p><div class="opts" data-key="grade" data-single="1"></div></section>
+</div>
+<div class="bar"><div><button id="send" disabled>送出</button><div class="err" id="err" hidden></div></div></div>
+
+<script>
+// 部署 Apps Script 後，把網址貼在這裡（結尾 /exec）。空白時為試用模式，不會送出。
+const API_URL = "";
+
+const Q = {
+  emotion:["容易生氣、煩躁","焦慮、緊張","難過、低落","課業升學壓力大","不說出自己的感受","沒有明顯困擾"],
+  behavior:["衝動、頂嘴","拖延、要一直催","過度使用手機網路","不遵守規範","遇到困難就逃避","沒有明顯困擾"],
+  social:["與孩子溝通時，經常演變成責備、爭吵或冷戰","與同學容易發生爭執或意見衝突","覺得自己沒有知心朋友，或常感到被孤立","曾遭遇言語嘲諷、排擠、欺負或網路霸凌","不容易表達自己的想法，也不敢拒絕他人的要求","家長與教師對孩子的管教方式或期待不同","近期沒有明顯的人際互動困擾"],
+  priority:["情緒","行為","人際"],
+  grade:["七年級","八年級","九年級"]
+};
+const isNone=v=>v.indexOf("沒有明顯")>-1||v.indexOf("近期沒有")===0;
+const state={emotion:[],behavior:[],social:[],priority:"",grade:""};
+const KEY="sihu-parent-survey-done";
+let already=false; try{already=!!localStorage.getItem(KEY)}catch(e){}
+
+document.querySelectorAll(".opts").forEach(box=>{
+  const key=box.dataset.key, single=!!box.dataset.single;
+  Q[key].forEach(t=>{
+    const l=document.createElement("label");l.className="opt";
+    const i=document.createElement("input");i.type=single?"radio":"checkbox";i.name=key;i.value=t;
+    i.addEventListener("change",()=>{
+      if(single){state[key]=t}
+      else{
+        const none=t.indexOf("沒有明顯")>-1||t.indexOf("近期沒有")===0;
+        if(i.checked&&none){state[key]=[t];box.querySelectorAll("input").forEach(x=>x.checked=x.value===t)}
+        else{
+          if(i.checked){state[key]=state[key].filter(v=>!isNone(v));box.querySelectorAll("input").forEach(x=>{if(isNone(x.value))x.checked=false});state[key].push(t)}
+          else state[key]=state[key].filter(v=>v!==t);
+        }
+      }
+      check();
+    });
+    l.append(i,document.createTextNode(t));box.append(l);
+  });
+});
+const send=document.getElementById("send"),err=document.getElementById("err");
+function check(){send.disabled=!(state.emotion.length&&state.behavior.length&&state.social.length&&state.priority&&state.grade)}
+function thanks(msg){
+  document.getElementById("app").innerHTML='<div class="done"><h1>謝謝您！</h1><p class="lead">'+msg+'</p></div>';
+  document.querySelector(".bar").remove();
+}
+if(already)thanks("這支手機已經填過了。請看前方螢幕的統計。");
+send.addEventListener("click",async()=>{
+  send.disabled=true;err.hidden=true;
+  try{
+    if(API_URL){
+      await fetch(API_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(state)});
+    }
+    try{localStorage.setItem(KEY,"1")}catch(e){}
+    thanks(API_URL?"已送出。請看前方螢幕的統計。":"試用模式：尚未連接後端，這份回答沒有送出。");
+  }catch(e){
+    err.textContent="送出失敗，請確認網路後再按一次。";err.hidden=false;send.disabled=false;
+  }
+});
+</script>
+</body>
+</html>
