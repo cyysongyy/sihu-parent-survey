@@ -53,7 +53,7 @@ const KEY="sihu-parent-survey-done";
 const body=document.getElementById("body"),send=document.getElementById("send"),err=document.getElementById("err"),
       sendbar=document.getElementById("sendbar"),toggle=document.getElementById("toggle"),
       title=document.getElementById("title"),lead=document.getElementById("lead");
-let done=false;try{done=!!localStorage.getItem(KEY)}catch(e){}
+let done=false,curRound=0;let savedRound=null;try{savedRound=localStorage.getItem(KEY)}catch(e){}
 let timer=null,mine=null;
 
 function buildForm(){
@@ -123,15 +123,20 @@ send.addEventListener("click",async()=>{
   try{
     if(API_URL)await fetch(API_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(state)});
     mine=JSON.parse(JSON.stringify(state));
-    try{localStorage.setItem(KEY,"1")}catch(e){}
+    try{localStorage.setItem(KEY,"r"+curRound)}catch(e){}
     done=true;showResults();
   }catch(e){err.textContent="送出失敗，請確認網路後再按一次。";err.hidden=false;send.disabled=false}
 });
 
 // 掃描 QR Code 直接看到問卷；網址加 ?results 可只看統計（投影用）
-if(location.search.indexOf("results")>-1){showResults()}
-else if(done){showResults()}
-else buildForm();
+(async()=>{
+  // 講師按「清除紀錄」後 round 會加 1，之前填過的手機就可以重新填
+  if(API_URL){try{const d=await fetchData();curRound=d.round||0}catch(e){}}
+  done=savedRound==="r"+curRound;
+  if(location.search.indexOf("results")>-1){showResults()}
+  else if(done){showResults()}
+  else buildForm();
+})();
 </script>
 </body>
 </html>
