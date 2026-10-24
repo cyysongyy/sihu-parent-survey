@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>親職教育 家長小問卷</title>
 <style>
-:root{--bg:#F6F8F7;--card:#fff;--ink:#1F2A3A;--sub:#5B6776;--line:#DCE3E1;--emo:#2A7F7A;--beh:#9A5B17;--soc:#2A5C8A;--on:#fff}
+:root{--bg:#F6F8F7;--card:#fff;--ink:#1F2A3A;--sub:#5B6776;--line:#DCE3E1;--track:#E6ECEA;--emo:#2A7F7A;--beh:#9A5B17;--soc:#2A5C8A}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-size:18px;line-height:1.5}
 .wrap{max-width:560px;margin:0 auto;padding:20px 16px 120px}
@@ -18,86 +18,129 @@ h2{font-size:20px;margin:0 0 4px}
 label.opt{display:flex;align-items:center;gap:12px;min-height:52px;padding:10px 14px;border:2px solid var(--line);border-radius:12px;cursor:pointer;background:var(--card)}
 label.opt input{width:22px;height:22px;flex:none;accent-color:var(--c)}
 label.opt:has(input:checked){border-color:var(--c);background:color-mix(in srgb,var(--c) 10%,var(--card))}
-#emo{--c:var(--emo)} #beh{--c:var(--beh)} #soc{--c:var(--soc)} #pri,#grade{--c:var(--ink)}
+.emo{--c:var(--emo)} .beh{--c:var(--beh)} .soc{--c:var(--soc)}
 .bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px))}
 .bar div{max-width:560px;margin:0 auto}
 button{width:100%;min-height:56px;border:0;border-radius:12px;background:var(--ink);color:var(--card);font:inherit;font-weight:700;font-size:20px;cursor:pointer}
 button:disabled{opacity:.4}
-.done{text-align:center;padding:60px 16px}
-.done h1{font-size:30px}
 .err{color:#B3261E;font-size:15px;margin-top:8px;text-align:center}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141A22;--card:#1E2631;--ink:#EDF1F5;--sub:#9AA6B4;--line:#33404F;--emo:#5CC4BD;--beh:#E9B872;--soc:#7DB4E6}}
+.link{display:inline-block;margin:0 0 16px;color:var(--sub);font-size:16px;text-decoration:underline;cursor:pointer;background:none;border:0;min-height:0;width:auto;padding:0;font-weight:400}
+/* 長條圖 */
+.item{margin-bottom:14px}
+.item .lab{font-size:16px;line-height:1.4;margin-bottom:4px}
+.item .line{display:flex;align-items:center;gap:10px}
+.track{flex:1;height:22px;background:var(--track);border-radius:11px;overflow:hidden}
+.fill{height:100%;background:var(--c);border-radius:11px;transition:width .6s}
+.num{width:2.6em;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.total{color:var(--sub);font-size:16px;margin:0 0 16px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141A22;--card:#1E2631;--ink:#EDF1F5;--sub:#9AA6B4;--line:#33404F;--track:#2C3745;--emo:#5CC4BD;--beh:#E9B872;--soc:#7DB4E6}}
+:root[data-theme="dark"]{--bg:#141A22;--card:#1E2631;--ink:#EDF1F5;--sub:#9AA6B4;--line:#33404F;--track:#2C3745;--emo:#5CC4BD;--beh:#E9B872;--soc:#7DB4E6}
 </style>
 </head>
 <body>
 <div class="wrap" id="app">
-<h1>家長小問卷</h1>
-<p class="lead">約 1 分鐘，不記名。想一想孩子最近一個月的情況，有的就勾。</p>
-
-<section id="emo"><h2 style="color:var(--emo)">情緒</h2><p class="hint">可複選</p><div class="opts" data-key="emotion"></div></section>
-<section id="beh"><h2 style="color:var(--beh)">行為</h2><p class="hint">可複選</p><div class="opts" data-key="behavior"></div></section>
-<section id="soc"><h2 style="color:var(--soc)">人際</h2><p class="hint">可複選</p><div class="opts" data-key="social"></div></section>
-
-<section id="pri"><h2>最想先改善哪一類？</h2><p class="hint">單選</p><div class="opts" data-key="priority" data-single="1"></div></section>
-<section id="grade"><h2>孩子年級</h2><p class="hint">單選</p><div class="opts" data-key="grade" data-single="1"></div></section>
+  <h1 id="title">家長小問卷</h1>
+  <p class="lead" id="lead">約 1 分鐘，不記名。想一想孩子最近一個月的情況，有的就勾。</p>
+  <button class="link" id="toggle" hidden></button>
+  <div id="body"></div>
 </div>
-<div class="bar"><div><button id="send" disabled>送出</button><div class="err" id="err" hidden></div></div></div>
+<div class="bar" id="sendbar"><div><button id="send" disabled>送出</button><div class="err" id="err" hidden></div></div></div>
 
 <script>
-// 部署 Apps Script 後，把網址貼在這裡（結尾 /exec）。空白時為試用模式，不會送出。
+// 部署 Apps Script 後，把網址貼在這裡（結尾 /exec）。空白時為試用模式（示範數字，不會送出）。
 const API_URL = "";
 
-const Q = {
-  emotion:["容易生氣、煩躁","焦慮、緊張","難過、低落","課業升學壓力大","不說出自己的感受","沒有明顯困擾"],
-  behavior:["衝動、頂嘴","拖延、要一直催","過度使用手機網路","不遵守規範","遇到困難就逃避","沒有明顯困擾"],
-  social:["與孩子溝通時，經常演變成責備、爭吵或冷戰","與同學容易發生爭執或意見衝突","覺得自己沒有知心朋友，或常感到被孤立","曾遭遇言語嘲諷、排擠、欺負或網路霸凌","不容易表達自己的想法，也不敢拒絕他人的要求","家長與教師對孩子的管教方式或期待不同","近期沒有明顯的人際互動困擾"],
-  priority:["情緒","行為","人際"],
-  grade:["七年級","八年級","九年級"]
-};
+const GROUPS=[
+ {key:"emotion",name:"情緒",cls:"emo",items:["容易生氣、煩躁","焦慮、緊張","難過、低落","課業升學壓力大","不說出自己的感受","沒有明顯困擾"]},
+ {key:"behavior",name:"行為",cls:"beh",items:["衝動、頂嘴","拖延、要一直催","過度使用手機網路","不遵守規範","遇到困難就逃避","沒有明顯困擾"]},
+ {key:"social",name:"人際",cls:"soc",items:["與孩子溝通時，經常演變成責備、爭吵或冷戰","與同學容易發生爭執或意見衝突","覺得自己沒有知心朋友，或常感到被孤立","曾遭遇言語嘲諷、排擠、欺負或網路霸凌","不容易表達自己的想法，也不敢拒絕他人的要求","家長與教師對孩子的管教方式或期待不同","近期沒有明顯的人際互動困擾"]}
+];
+const DEMO={total:20,emotion:[9,7,4,12,10,2],behavior:[6,13,15,7,8,1],social:[11,5,4,3,9,6,3]};
 const isNone=v=>v.indexOf("沒有明顯")>-1||v.indexOf("近期沒有")===0;
-const state={emotion:[],behavior:[],social:[],priority:"",grade:""};
+const state={emotion:[],behavior:[],social:[]};
 const KEY="sihu-parent-survey-done";
-let already=false; try{already=!!localStorage.getItem(KEY)}catch(e){}
+const body=document.getElementById("body"),send=document.getElementById("send"),err=document.getElementById("err"),
+      sendbar=document.getElementById("sendbar"),toggle=document.getElementById("toggle"),
+      title=document.getElementById("title"),lead=document.getElementById("lead");
+let done=false;try{done=!!localStorage.getItem(KEY)}catch(e){}
+let timer=null,mine=null;
 
-document.querySelectorAll(".opts").forEach(box=>{
-  const key=box.dataset.key, single=!!box.dataset.single;
-  Q[key].forEach(t=>{
-    const l=document.createElement("label");l.className="opt";
-    const i=document.createElement("input");i.type=single?"radio":"checkbox";i.name=key;i.value=t;
-    i.addEventListener("change",()=>{
-      if(single){state[key]=t}
-      else{
-        const none=t.indexOf("沒有明顯")>-1||t.indexOf("近期沒有")===0;
-        if(i.checked&&none){state[key]=[t];box.querySelectorAll("input").forEach(x=>x.checked=x.value===t)}
-        else{
-          if(i.checked){state[key]=state[key].filter(v=>!isNone(v));box.querySelectorAll("input").forEach(x=>{if(isNone(x.value))x.checked=false});state[key].push(t)}
-          else state[key]=state[key].filter(v=>v!==t);
-        }
-      }
-      check();
+function buildForm(){
+  body.innerHTML="";
+  GROUPS.forEach(g=>{
+    const s=document.createElement("section");s.className=g.cls;
+    s.innerHTML='<h2 style="color:var(--c)"></h2><p class="hint">可複選</p><div class="opts"></div>';
+    s.querySelector("h2").textContent=g.name;
+    const box=s.querySelector(".opts");
+    g.items.forEach(t=>{
+      const l=document.createElement("label");l.className="opt";
+      const i=document.createElement("input");i.type="checkbox";i.value=t;
+      i.checked=state[g.key].includes(t);
+      i.addEventListener("change",()=>{
+        if(i.checked&&isNone(t)){state[g.key]=[t];box.querySelectorAll("input").forEach(x=>x.checked=x.value===t)}
+        else if(i.checked){state[g.key]=state[g.key].filter(v=>!isNone(v));box.querySelectorAll("input").forEach(x=>{if(isNone(x.value))x.checked=false});state[g.key].push(t)}
+        else state[g.key]=state[g.key].filter(v=>v!==t);
+        send.disabled=!GROUPS.every(x=>state[x.key].length);
+      });
+      l.append(i,document.createTextNode(t));box.append(l);
     });
-    l.append(i,document.createTextNode(t));box.append(l);
+    body.append(s);
   });
-});
-const send=document.getElementById("send"),err=document.getElementById("err");
-function check(){send.disabled=!(state.emotion.length&&state.behavior.length&&state.social.length&&state.priority&&state.grade)}
-function thanks(msg){
-  document.getElementById("app").innerHTML='<div class="done"><h1>謝謝您！</h1><p class="lead">'+msg+'</p></div>';
-  document.querySelector(".bar").remove();
 }
-if(already)thanks("這支手機已經填過了。請看前方螢幕的統計。");
+
+function chart(d){
+  body.innerHTML="";
+  const p=document.createElement("p");p.className="total";p.textContent="目前共 "+d.total+" 位家長填寫（勾選人數）";body.append(p);
+  GROUPS.forEach(g=>{
+    const s=document.createElement("section");s.className=g.cls;
+    const h=document.createElement("h2");h.style.color="var(--c)";h.textContent=g.name;h.style.marginBottom="12px";s.append(h);
+    const nums=g.items.map((t,i)=>Array.isArray(d[g.key])?(d[g.key][i]||0):(d[g.key]||{})[t]||0);
+    const max=Math.max(1,...nums);
+    g.items.forEach((t,i)=>{
+      const it=document.createElement("div");it.className="item";
+      it.innerHTML='<div class="lab"></div><div class="line"><div class="track"><div class="fill"></div></div><div class="num"></div></div>';
+      const you=mine&&mine[g.key].includes(t);
+      it.querySelector(".lab").textContent=t+(you?"　✓ 您勾選的":"");
+      it.querySelector(".fill").style.width=(nums[i]/max*100)+"%";
+      it.querySelector(".num").textContent=nums[i];
+      s.append(it);
+    });
+    body.append(s);
+  });
+}
+
+async function fetchData(){
+  if(!API_URL){
+    const d=JSON.parse(JSON.stringify(DEMO));
+    if(mine){d.total++;GROUPS.forEach(g=>g.items.forEach((t,i)=>{if(mine[g.key].includes(t))d[g.key][i]++}))}
+    return d;
+  }
+  const r=await fetch(API_URL,{cache:"no-store"});return r.json();
+}
+async function showResults(){
+  sendbar.hidden=true;
+  title.textContent="家長選項統計";
+  lead.textContent=API_URL?"長條越長，勾選的家長越多。每 5 秒自動更新。":"試用模式：目前是示範數字。";
+  toggle.hidden=false;toggle.textContent=done?"":"← 回到問卷";if(done)toggle.hidden=true;
+  const draw=async()=>{try{chart(await fetchData())}catch(e){lead.textContent="暫時讀不到資料，稍後自動重試。"}};
+  await draw();clearInterval(timer);timer=setInterval(draw,5000);
+}
+toggle.addEventListener("click",()=>{clearInterval(timer);location.href=location.pathname});
+
 send.addEventListener("click",async()=>{
   send.disabled=true;err.hidden=true;
   try{
-    if(API_URL){
-      await fetch(API_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(state)});
-    }
+    if(API_URL)await fetch(API_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(state)});
+    mine=JSON.parse(JSON.stringify(state));
     try{localStorage.setItem(KEY,"1")}catch(e){}
-    thanks(API_URL?"已送出。請看前方螢幕的統計。":"試用模式：尚未連接後端，這份回答沒有送出。");
-  }catch(e){
-    err.textContent="送出失敗，請確認網路後再按一次。";err.hidden=false;send.disabled=false;
-  }
+    done=true;showResults();
+  }catch(e){err.textContent="送出失敗，請確認網路後再按一次。";err.hidden=false;send.disabled=false}
 });
+
+// 掃描 QR Code 直接看到問卷；網址加 ?results 可只看統計（投影用）
+if(location.search.indexOf("results")>-1){showResults()}
+else if(done){showResults()}
+else buildForm();
 </script>
 </body>
 </html>
