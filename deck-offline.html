@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>陪孩子一起長大 親職教育簡報</title>
+<script>var QRCode;!function(){function a(a){this.mode=c.MODE_8BIT_BYTE,this.data=a,this.parsedData=[];for(var b=[],d=0,e=this.data.length;e>d;d++){var f=this.data.charCodeAt(d);f>65536?(b[0]=240|(1835008&f)>>>18,b[1]=128|(258048&f)>>>12,b[2]=128|(4032&f)>>>6,b[3]=128|63&f):f>2048?(b[0]=224|(61440&f)>>>12,b[1]=128|(4032&f)>>>6,b[2]=128|63&f):f>128?(b[0]=192|(1984&f)>>>6,b[1]=128|63&f):b[0]=f,this.parsedData=this.parsedData.concat(b)}this.parsedData.length!=this.data.length&&(this.parsedData.unshift(191),this.parsedData.unshift(187),this.parsedData.unshift(239))}function b(a,b){this.typeNumber=a,this.errorCorrectLevel=b,this.modules=null,this.moduleCount=0,this.dataCache=null,this.dataList=[]}function i(a,b){if(void 0==a.length)throw new Error(a.length+"/"+b);for(var c=0;c<a.length&&0==a[c];)c++;this.num=new Array(a.length-c+b);for(var d=0;d<a.length-c;d++)this.num[d]=a[d+c]}function j(a,b){this.totalCount=a,this.dataCount=b}function k(){this.buffer=[],this.length=0}function m(){return"undefined"!=typeof CanvasRenderingContext2D}function n(){var a=!1,b=navigator.userAgent;return/android/i.test(b)&&(a=!0,aMat=b.toString().match(/android ([0-9]\.[0-9])/i),aMat&&aMat[1]&&(a=parseFloat(aMat[1]))),a}function r(a,b){for(var c=1,e=s(a),f=0,g=l.length;g>=f;f++){var h=0;switch(b){case d.L:h=l[f][0];break;case d.M:h=l[f][1];break;case d.Q:h=l[f][2];break;case d.H:h=l[f][3]}if(h>=e)break;c++}if(c>l.length)throw new Error("Too long data");return c}function s(a){var b=encodeURI(a).toString().replace(/\%[0-9a-fA-F]{2}/g,"a");return b.length+(b.length!=a?3:0)}a.prototype={getLength:function(){return this.parsedData.length},write:function(a){for(var b=0,c=this.parsedData.length;c>b;b++)a.put(this.parsedData[b],8)}},b.prototype={addData:function(b){var c=new a(b);this.dataList.push(c),this.dataCache=null},isDark:function(a,b){if(0>a||this.moduleCount<=a||0>b||this.moduleCount<=b)throw new Error(a+","+b);return this.modules[a][b]},getModuleCount:function(){return this.moduleCount},make:function(){this.makeImpl(!1,this.getBestMaskPattern())},makeImpl:function(a,c){this.moduleCount=4*this.typeNumber+17,this.modules=new Array(this.moduleCount);for(var d=0;d<this.moduleCount;d++){this.modules[d]=new Array(this.moduleCount);for(var e=0;e<this.moduleCount;e++)this.modules[d][e]=null}this.setupPositionProbePattern(0,0),this.setupPositionProbePattern(this.moduleCount-7,0),this.setupPositionProbePattern(0,this.moduleCount-7),this.setupPositionAdjustPattern(),this.setupTimingPattern(),this.setupTypeInfo(a,c),this.typeNumber>=7&&this.setupTypeNumber(a),null==this.dataCache&&(this.dataCache=b.createData(this.typeNumber,this.errorCorrectLevel,this.dataList)),this.mapData(this.dataCache,c)},setupPositionProbePattern:function(a,b){for(var c=-1;7>=c;c++)if(!(-1>=a+c||this.moduleCount<=a+c))for(var d=-1;7>=d;d++)-1>=b+d||this.moduleCount<=b+d||(this.modules[a+c][b+d]=c>=0&&6>=c&&(0==d||6==d)||d>=0&&6>=d&&(0==c||6==c)||c>=2&&4>=c&&d>=2&&4>=d?!0:!1)},getBestMaskPattern:function(){for(var a=0,b=0,c=0;8>c;c++){this.makeImpl(!0,c);var d=f.getLostPoint(this);(0==c||a>d)&&(a=d,b=c)}return b},createMovieClip:function(a,b,c){var d=a.createEmptyMovieClip(b,c),e=1;this.make();for(var f=0;f<this.modules.length;f++)for(var g=f*e,h=0;h<this.modules[f].length;h++){var i=h*e,j=this.modules[f][h];j&&(d.beginFill(0,100),d.moveTo(i,g),d.lineTo(i+e,g),d.lineTo(i+e,g+e),d.lineTo(i,g+e),d.endFill())}return d},setupTimingPattern:function(){for(var a=8;a<this.moduleCount-8;a++)null==this.modules[a][6]&&(this.modules[a][6]=0==a%2);for(var b=8;b<this.moduleCount-8;b++)null==this.modules[6][b]&&(this.modules[6][b]=0==b%2)},setupPositionAdjustPattern:function(){for(var a=f.getPatternPosition(this.typeNumber),b=0;b<a.length;b++)for(var c=0;c<a.length;c++){var d=a[b],e=a[c];if(null==this.modules[d][e])for(var g=-2;2>=g;g++)for(var h=-2;2>=h;h++)this.modules[d+g][e+h]=-2==g||2==g||-2==h||2==h||0==g&&0==h?!0:!1}},setupTypeNumber:function(a){for(var b=f.getBCHTypeNumber(this.typeNumber),c=0;18>c;c++){var d=!a&&1==(1&b>>c);this.modules[Math.floor(c/3)][c%3+this.moduleCount-8-3]=d}for(var c=0;18>c;c++){var d=!a&&1==(1&b>>c);this.modules[c%3+this.moduleCount-8-3][Math.floor(c/3)]=d}},setupTypeInfo:function(a,b){for(var c=this.errorCorrectLevel<<3|b,d=f.getBCHTypeInfo(c),e=0;15>e;e++){var g=!a&&1==(1&d>>e);6>e?this.modules[e][8]=g:8>e?this.modules[e+1][8]=g:this.modules[this.moduleCount-15+e][8]=g}for(var e=0;15>e;e++){var g=!a&&1==(1&d>>e);8>e?this.modules[8][this.moduleCount-e-1]=g:9>e?this.modules[8][15-e-1+1]=g:this.modules[8][15-e-1]=g}this.modules[this.moduleCount-8][8]=!a},mapData:function(a,b){for(var c=-1,d=this.moduleCount-1,e=7,g=0,h=this.moduleCount-1;h>0;h-=2)for(6==h&&h--;;){for(var i=0;2>i;i++)if(null==this.modules[d][h-i]){var j=!1;g<a.length&&(j=1==(1&a[g]>>>e));var k=f.getMask(b,d,h-i);k&&(j=!j),this.modules[d][h-i]=j,e--,-1==e&&(g++,e=7)}if(d+=c,0>d||this.moduleCount<=d){d-=c,c=-c;break}}}},b.PAD0=236,b.PAD1=17,b.createData=function(a,c,d){for(var e=j.getRSBlocks(a,c),g=new k,h=0;h<d.length;h++){var i=d[h];g.put(i.mode,4),g.put(i.getLength(),f.getLengthInBits(i.mode,a)),i.write(g)}for(var l=0,h=0;h<e.length;h++)l+=e[h].dataCount;if(g.getLengthInBits()>8*l)throw new Error("code length overflow. ("+g.getLengthInBits()+">"+8*l+")");for(g.getLengthInBits()+4<=8*l&&g.put(0,4);0!=g.getLengthInBits()%8;)g.putBit(!1);for(;;){if(g.getLengthInBits()>=8*l)break;if(g.put(b.PAD0,8),g.getLengthInBits()>=8*l)break;g.put(b.PAD1,8)}return b.createBytes(g,e)},b.createBytes=function(a,b){for(var c=0,d=0,e=0,g=new Array(b.length),h=new Array(b.length),j=0;j<b.length;j++){var k=b[j].dataCount,l=b[j].totalCount-k;d=Math.max(d,k),e=Math.max(e,l),g[j]=new Array(k);for(var m=0;m<g[j].length;m++)g[j][m]=255&a.buffer[m+c];c+=k;var n=f.getErrorCorrectPolynomial(l),o=new i(g[j],n.getLength()-1),p=o.mod(n);h[j]=new Array(n.getLength()-1);for(var m=0;m<h[j].length;m++){var q=m+p.getLength()-h[j].length;h[j][m]=q>=0?p.get(q):0}}for(var r=0,m=0;m<b.length;m++)r+=b[m].totalCount;for(var s=new Array(r),t=0,m=0;d>m;m++)for(var j=0;j<b.length;j++)m<g[j].length&&(s[t++]=g[j][m]);for(var m=0;e>m;m++)for(var j=0;j<b.length;j++)m<h[j].length&&(s[t++]=h[j][m]);return s};for(var c={MODE_NUMBER:1,MODE_ALPHA_NUM:2,MODE_8BIT_BYTE:4,MODE_KANJI:8},d={L:1,M:0,Q:3,H:2},e={PATTERN000:0,PATTERN001:1,PATTERN010:2,PATTERN011:3,PATTERN100:4,PATTERN101:5,PATTERN110:6,PATTERN111:7},f={PATTERN_POSITION_TABLE:[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]],G15:1335,G18:7973,G15_MASK:21522,getBCHTypeInfo:function(a){for(var b=a<<10;f.getBCHDigit(b)-f.getBCHDigit(f.G15)>=0;)b^=f.G15<<f.getBCHDigit(b)-f.getBCHDigit(f.G15);return(a<<10|b)^f.G15_MASK},getBCHTypeNumber:function(a){for(var b=a<<12;f.getBCHDigit(b)-f.getBCHDigit(f.G18)>=0;)b^=f.G18<<f.getBCHDigit(b)-f.getBCHDigit(f.G18);return a<<12|b},getBCHDigit:function(a){for(var b=0;0!=a;)b++,a>>>=1;return b},getPatternPosition:function(a){return f.PATTERN_POSITION_TABLE[a-1]},getMask:function(a,b,c){switch(a){case e.PATTERN000:return 0==(b+c)%2;case e.PATTERN001:return 0==b%2;case e.PATTERN010:return 0==c%3;case e.PATTERN011:return 0==(b+c)%3;case e.PATTERN100:return 0==(Math.floor(b/2)+Math.floor(c/3))%2;case e.PATTERN101:return 0==b*c%2+b*c%3;case e.PATTERN110:return 0==(b*c%2+b*c%3)%2;case e.PATTERN111:return 0==(b*c%3+(b+c)%2)%2;default:throw new Error("bad maskPattern:"+a)}},getErrorCorrectPolynomial:function(a){for(var b=new i([1],0),c=0;a>c;c++)b=b.multiply(new i([1,g.gexp(c)],0));return b},getLengthInBits:function(a,b){if(b>=1&&10>b)switch(a){case c.MODE_NUMBER:return 10;case c.MODE_ALPHA_NUM:return 9;case c.MODE_8BIT_BYTE:return 8;case c.MODE_KANJI:return 8;default:throw new Error("mode:"+a)}else if(27>b)switch(a){case c.MODE_NUMBER:return 12;case c.MODE_ALPHA_NUM:return 11;case c.MODE_8BIT_BYTE:return 16;case c.MODE_KANJI:return 10;default:throw new Error("mode:"+a)}else{if(!(41>b))throw new Error("type:"+b);switch(a){case c.MODE_NUMBER:return 14;case c.MODE_ALPHA_NUM:return 13;case c.MODE_8BIT_BYTE:return 16;case c.MODE_KANJI:return 12;default:throw new Error("mode:"+a)}}},getLostPoint:function(a){for(var b=a.getModuleCount(),c=0,d=0;b>d;d++)for(var e=0;b>e;e++){for(var f=0,g=a.isDark(d,e),h=-1;1>=h;h++)if(!(0>d+h||d+h>=b))for(var i=-1;1>=i;i++)0>e+i||e+i>=b||(0!=h||0!=i)&&g==a.isDark(d+h,e+i)&&f++;f>5&&(c+=3+f-5)}for(var d=0;b-1>d;d++)for(var e=0;b-1>e;e++){var j=0;a.isDark(d,e)&&j++,a.isDark(d+1,e)&&j++,a.isDark(d,e+1)&&j++,a.isDark(d+1,e+1)&&j++,(0==j||4==j)&&(c+=3)}for(var d=0;b>d;d++)for(var e=0;b-6>e;e++)a.isDark(d,e)&&!a.isDark(d,e+1)&&a.isDark(d,e+2)&&a.isDark(d,e+3)&&a.isDark(d,e+4)&&!a.isDark(d,e+5)&&a.isDark(d,e+6)&&(c+=40);for(var e=0;b>e;e++)for(var d=0;b-6>d;d++)a.isDark(d,e)&&!a.isDark(d+1,e)&&a.isDark(d+2,e)&&a.isDark(d+3,e)&&a.isDark(d+4,e)&&!a.isDark(d+5,e)&&a.isDark(d+6,e)&&(c+=40);for(var k=0,e=0;b>e;e++)for(var d=0;b>d;d++)a.isDark(d,e)&&k++;var l=Math.abs(100*k/b/b-50)/5;return c+=10*l}},g={glog:function(a){if(1>a)throw new Error("glog("+a+")");return g.LOG_TABLE[a]},gexp:function(a){for(;0>a;)a+=255;for(;a>=256;)a-=255;return g.EXP_TABLE[a]},EXP_TABLE:new Array(256),LOG_TABLE:new Array(256)},h=0;8>h;h++)g.EXP_TABLE[h]=1<<h;for(var h=8;256>h;h++)g.EXP_TABLE[h]=g.EXP_TABLE[h-4]^g.EXP_TABLE[h-5]^g.EXP_TABLE[h-6]^g.EXP_TABLE[h-8];for(var h=0;255>h;h++)g.LOG_TABLE[g.EXP_TABLE[h]]=h;i.prototype={get:function(a){return this.num[a]},getLength:function(){return this.num.length},multiply:function(a){for(var b=new Array(this.getLength()+a.getLength()-1),c=0;c<this.getLength();c++)for(var d=0;d<a.getLength();d++)b[c+d]^=g.gexp(g.glog(this.get(c))+g.glog(a.get(d)));return new i(b,0)},mod:function(a){if(this.getLength()-a.getLength()<0)return this;for(var b=g.glog(this.get(0))-g.glog(a.get(0)),c=new Array(this.getLength()),d=0;d<this.getLength();d++)c[d]=this.get(d);for(var d=0;d<a.getLength();d++)c[d]^=g.gexp(g.glog(a.get(d))+b);return new i(c,0).mod(a)}},j.RS_BLOCK_TABLE=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,44,22],[1,44,16],[1,70,55],[1,70,44],[2,35,17],[2,35,13],[1,100,80],[2,50,32],[2,50,24],[4,25,9],[1,134,108],[2,67,43],[2,33,15,2,34,16],[2,33,11,2,34,12],[2,86,68],[4,43,27],[4,43,19],[4,43,15],[2,98,78],[4,49,31],[2,32,14,4,33,15],[4,39,13,1,40,14],[2,121,97],[2,60,38,2,61,39],[4,40,18,2,41,19],[4,40,14,2,41,15],[2,146,116],[3,58,36,2,59,37],[4,36,16,4,37,17],[4,36,12,4,37,13],[2,86,68,2,87,69],[4,69,43,1,70,44],[6,43,19,2,44,20],[6,43,15,2,44,16],[4,101,81],[1,80,50,4,81,51],[4,50,22,4,51,23],[3,36,12,8,37,13],[2,116,92,2,117,93],[6,58,36,2,59,37],[4,46,20,6,47,21],[7,42,14,4,43,15],[4,133,107],[8,59,37,1,60,38],[8,44,20,4,45,21],[12,33,11,4,34,12],[3,145,115,1,146,116],[4,64,40,5,65,41],[11,36,16,5,37,17],[11,36,12,5,37,13],[5,109,87,1,110,88],[5,65,41,5,66,42],[5,54,24,7,55,25],[11,36,12],[5,122,98,1,123,99],[7,73,45,3,74,46],[15,43,19,2,44,20],[3,45,15,13,46,16],[1,135,107,5,136,108],[10,74,46,1,75,47],[1,50,22,15,51,23],[2,42,14,17,43,15],[5,150,120,1,151,121],[9,69,43,4,70,44],[17,50,22,1,51,23],[2,42,14,19,43,15],[3,141,113,4,142,114],[3,70,44,11,71,45],[17,47,21,4,48,22],[9,39,13,16,40,14],[3,135,107,5,136,108],[3,67,41,13,68,42],[15,54,24,5,55,25],[15,43,15,10,44,16],[4,144,116,4,145,117],[17,68,42],[17,50,22,6,51,23],[19,46,16,6,47,17],[2,139,111,7,140,112],[17,74,46],[7,54,24,16,55,25],[34,37,13],[4,151,121,5,152,122],[4,75,47,14,76,48],[11,54,24,14,55,25],[16,45,15,14,46,16],[6,147,117,4,148,118],[6,73,45,14,74,46],[11,54,24,16,55,25],[30,46,16,2,47,17],[8,132,106,4,133,107],[8,75,47,13,76,48],[7,54,24,22,55,25],[22,45,15,13,46,16],[10,142,114,2,143,115],[19,74,46,4,75,47],[28,50,22,6,51,23],[33,46,16,4,47,17],[8,152,122,4,153,123],[22,73,45,3,74,46],[8,53,23,26,54,24],[12,45,15,28,46,16],[3,147,117,10,148,118],[3,73,45,23,74,46],[4,54,24,31,55,25],[11,45,15,31,46,16],[7,146,116,7,147,117],[21,73,45,7,74,46],[1,53,23,37,54,24],[19,45,15,26,46,16],[5,145,115,10,146,116],[19,75,47,10,76,48],[15,54,24,25,55,25],[23,45,15,25,46,16],[13,145,115,3,146,116],[2,74,46,29,75,47],[42,54,24,1,55,25],[23,45,15,28,46,16],[17,145,115],[10,74,46,23,75,47],[10,54,24,35,55,25],[19,45,15,35,46,16],[17,145,115,1,146,116],[14,74,46,21,75,47],[29,54,24,19,55,25],[11,45,15,46,46,16],[13,145,115,6,146,116],[14,74,46,23,75,47],[44,54,24,7,55,25],[59,46,16,1,47,17],[12,151,121,7,152,122],[12,75,47,26,76,48],[39,54,24,14,55,25],[22,45,15,41,46,16],[6,151,121,14,152,122],[6,75,47,34,76,48],[46,54,24,10,55,25],[2,45,15,64,46,16],[17,152,122,4,153,123],[29,74,46,14,75,47],[49,54,24,10,55,25],[24,45,15,46,46,16],[4,152,122,18,153,123],[13,74,46,32,75,47],[48,54,24,14,55,25],[42,45,15,32,46,16],[20,147,117,4,148,118],[40,75,47,7,76,48],[43,54,24,22,55,25],[10,45,15,67,46,16],[19,148,118,6,149,119],[18,75,47,31,76,48],[34,54,24,34,55,25],[20,45,15,61,46,16]],j.getRSBlocks=function(a,b){var c=j.getRsBlockTable(a,b);if(void 0==c)throw new Error("bad rs block @ typeNumber:"+a+"/errorCorrectLevel:"+b);for(var d=c.length/3,e=[],f=0;d>f;f++)for(var g=c[3*f+0],h=c[3*f+1],i=c[3*f+2],k=0;g>k;k++)e.push(new j(h,i));return e},j.getRsBlockTable=function(a,b){switch(b){case d.L:return j.RS_BLOCK_TABLE[4*(a-1)+0];case d.M:return j.RS_BLOCK_TABLE[4*(a-1)+1];case d.Q:return j.RS_BLOCK_TABLE[4*(a-1)+2];case d.H:return j.RS_BLOCK_TABLE[4*(a-1)+3];default:return void 0}},k.prototype={get:function(a){var b=Math.floor(a/8);return 1==(1&this.buffer[b]>>>7-a%8)},put:function(a,b){for(var c=0;b>c;c++)this.putBit(1==(1&a>>>b-c-1))},getLengthInBits:function(){return this.length},putBit:function(a){var b=Math.floor(this.length/8);this.buffer.length<=b&&this.buffer.push(0),a&&(this.buffer[b]|=128>>>this.length%8),this.length++}};var l=[[17,14,11,7],[32,26,20,14],[53,42,32,24],[78,62,46,34],[106,84,60,44],[134,106,74,58],[154,122,86,64],[192,152,108,84],[230,180,130,98],[271,213,151,119],[321,251,177,137],[367,287,203,155],[425,331,241,177],[458,362,258,194],[520,412,292,220],[586,450,322,250],[644,504,364,280],[718,560,394,310],[792,624,442,338],[858,666,482,382],[929,711,509,403],[1003,779,565,439],[1091,857,611,461],[1171,911,661,511],[1273,997,715,535],[1367,1059,751,593],[1465,1125,805,625],[1528,1190,868,658],[1628,1264,908,698],[1732,1370,982,742],[1840,1452,1030,790],[1952,1538,1112,842],[2068,1628,1168,898],[2188,1722,1228,958],[2303,1809,1283,983],[2431,1911,1351,1051],[2563,1989,1423,1093],[2699,2099,1499,1139],[2809,2213,1579,1219],[2953,2331,1663,1273]],o=function(){var a=function(a,b){this._el=a,this._htOption=b};return a.prototype.draw=function(a){function g(a,b){var c=document.createElementNS("http://www.w3.org/2000/svg",a);for(var d in b)b.hasOwnProperty(d)&&c.setAttribute(d,b[d]);return c}var b=this._htOption,c=this._el,d=a.getModuleCount();Math.floor(b.width/d),Math.floor(b.height/d),this.clear();var h=g("svg",{viewBox:"0 0 "+String(d)+" "+String(d),width:"100%",height:"100%",fill:b.colorLight});h.setAttributeNS("http://www.w3.org/2000/xmlns/","xmlns:xlink","http://www.w3.org/1999/xlink"),c.appendChild(h),h.appendChild(g("rect",{fill:b.colorDark,width:"1",height:"1",id:"template"}));for(var i=0;d>i;i++)for(var j=0;d>j;j++)if(a.isDark(i,j)){var k=g("use",{x:String(i),y:String(j)});k.setAttributeNS("http://www.w3.org/1999/xlink","href","#template"),h.appendChild(k)}},a.prototype.clear=function(){for(;this._el.hasChildNodes();)this._el.removeChild(this._el.lastChild)},a}(),p="svg"===document.documentElement.tagName.toLowerCase(),q=p?o:m()?function(){function a(){this._elImage.src=this._elCanvas.toDataURL("image/png"),this._elImage.style.display="block",this._elCanvas.style.display="none"}function d(a,b){var c=this;if(c._fFail=b,c._fSuccess=a,null===c._bSupportDataURI){var d=document.createElement("img"),e=function(){c._bSupportDataURI=!1,c._fFail&&_fFail.call(c)},f=function(){c._bSupportDataURI=!0,c._fSuccess&&c._fSuccess.call(c)};return d.onabort=e,d.onerror=e,d.onload=f,d.src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",void 0}c._bSupportDataURI===!0&&c._fSuccess?c._fSuccess.call(c):c._bSupportDataURI===!1&&c._fFail&&c._fFail.call(c)}if(this._android&&this._android<=2.1){var b=1/window.devicePixelRatio,c=CanvasRenderingContext2D.prototype.drawImage;CanvasRenderingContext2D.prototype.drawImage=function(a,d,e,f,g,h,i,j){if("nodeName"in a&&/img/i.test(a.nodeName))for(var l=arguments.length-1;l>=1;l--)arguments[l]=arguments[l]*b;else"undefined"==typeof j&&(arguments[1]*=b,arguments[2]*=b,arguments[3]*=b,arguments[4]*=b);c.apply(this,arguments)}}var e=function(a,b){this._bIsPainted=!1,this._android=n(),this._htOption=b,this._elCanvas=document.createElement("canvas"),this._elCanvas.width=b.width,this._elCanvas.height=b.height,a.appendChild(this._elCanvas),this._el=a,this._oContext=this._elCanvas.getContext("2d"),this._bIsPainted=!1,this._elImage=document.createElement("img"),this._elImage.style.display="none",this._el.appendChild(this._elImage),this._bSupportDataURI=null};return e.prototype.draw=function(a){var b=this._elImage,c=this._oContext,d=this._htOption,e=a.getModuleCount(),f=d.width/e,g=d.height/e,h=Math.round(f),i=Math.round(g);b.style.display="none",this.clear();for(var j=0;e>j;j++)for(var k=0;e>k;k++){var l=a.isDark(j,k),m=k*f,n=j*g;c.strokeStyle=l?d.colorDark:d.colorLight,c.lineWidth=1,c.fillStyle=l?d.colorDark:d.colorLight,c.fillRect(m,n,f,g),c.strokeRect(Math.floor(m)+.5,Math.floor(n)+.5,h,i),c.strokeRect(Math.ceil(m)-.5,Math.ceil(n)-.5,h,i)}this._bIsPainted=!0},e.prototype.makeImage=function(){this._bIsPainted&&d.call(this,a)},e.prototype.isPainted=function(){return this._bIsPainted},e.prototype.clear=function(){this._oContext.clearRect(0,0,this._elCanvas.width,this._elCanvas.height),this._bIsPainted=!1},e.prototype.round=function(a){return a?Math.floor(1e3*a)/1e3:a},e}():function(){var a=function(a,b){this._el=a,this._htOption=b};return a.prototype.draw=function(a){for(var b=this._htOption,c=this._el,d=a.getModuleCount(),e=Math.floor(b.width/d),f=Math.floor(b.height/d),g=['<table style="border:0;border-collapse:collapse;">'],h=0;d>h;h++){g.push("<tr>");for(var i=0;d>i;i++)g.push('<td style="border:0;border-collapse:collapse;padding:0;margin:0;width:'+e+"px;height:"+f+"px;background-color:"+(a.isDark(h,i)?b.colorDark:b.colorLight)+';"></td>');g.push("</tr>")}g.push("</table>"),c.innerHTML=g.join("");var j=c.childNodes[0],k=(b.width-j.offsetWidth)/2,l=(b.height-j.offsetHeight)/2;k>0&&l>0&&(j.style.margin=l+"px "+k+"px")},a.prototype.clear=function(){this._el.innerHTML=""},a}();QRCode=function(a,b){if(this._htOption={width:256,height:256,typeNumber:4,colorDark:"#000000",colorLight:"#ffffff",correctLevel:d.H},"string"==typeof b&&(b={text:b}),b)for(var c in b)this._htOption[c]=b[c];"string"==typeof a&&(a=document.getElementById(a)),this._android=n(),this._el=a,this._oQRCode=null,this._oDrawing=new q(this._el,this._htOption),this._htOption.text&&this.makeCode(this._htOption.text)},QRCode.prototype.makeCode=function(a){this._oQRCode=new b(r(a,this._htOption.correctLevel),this._htOption.correctLevel),this._oQRCode.addData(a),this._oQRCode.make(),this._el.title=a,this._oDrawing.draw(this._oQRCode),this.makeImage()},QRCode.prototype.makeImage=function(){"function"==typeof this._oDrawing.makeImage&&(!this._android||this._android>=3)&&this._oDrawing.makeImage()},QRCode.prototype.clear=function(){this._oDrawing.clear()},QRCode.CorrectLevel=d}();</script>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#0E141C;overflow:hidden;font-family:"Noto Sans TC",Arial,sans-serif}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
+.slide{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden}
+.slide:not(.on){display:none!important}
+.slide *{margin:0}
+.slide ul,.slide ol{padding-left:1.2em}
+.slide table{border-collapse:collapse}
+.slide th,.slide td{padding:16px 24px;text-align:left;border-bottom:2px solid rgba(128,128,128,.35)}
+.slide th{font-weight:700;border-bottom-width:3px}
+#hud{position:fixed;right:14px;bottom:10px;color:#9AA6B4;font-size:14px;font-family:Arial,sans-serif;user-select:none}
+#notes{position:fixed;left:0;right:0;bottom:0;max-height:34%;overflow:auto;background:rgba(14,20,28,.94);color:#EDF1F5;padding:16px 24px;font-size:20px;line-height:1.6;display:none}
+#notes.show{display:block}
+.lcol h3{font-size:36px;font-weight:700;margin-bottom:14px}
+.lrow{margin-bottom:12px}
+.lrow .t{font-size:24px;line-height:1.3;margin-bottom:4px}
+.lrow .l{display:flex;gap:12px;align-items:center}
+.lrow .bar{flex:1;height:20px;background:rgba(255,255,255,.14);border-radius:10px;overflow:hidden}
+.lrow .f{height:100%;border-radius:10px;transition:width .6s}
+.lrow .n{width:2.2em;text-align:right;font-size:28px;font-weight:700}
+.gcard{position:absolute;width:700px;height:118px;box-sizing:border-box;border:4px solid #DDE3E1;border-radius:20px;background:#fff;display:flex;flex-direction:column;justify-content:center;padding:0 32px;cursor:pointer;pointer-events:auto;transition:top .4s,background .2s,border-color .2s;font-family:inherit;text-align:left}
+.gcard b{font-size:40px;line-height:1.2}.gcard span{font-size:26px;color:#4A5568;margin-top:4px}
+.gcard.sel{border-color:#1F2A3A;background:#EEF2F6;box-shadow:0 0 0 4px rgba(31,42,58,.15)}
+.gcard.ok{cursor:default}
+.gcard.bad{animation:gshake .5s;border-color:#C2543F;background:#FBE4E4}
+@keyframes gshake{0%,100%{transform:translateX(0)}20%{transform:translateX(-14px)}40%{transform:translateX(14px)}60%{transform:translateX(-10px)}80%{transform:translateX(10px)}}
+.gbtn{font-family:inherit;font-size:28px;padding:12px 28px;border-radius:14px;border:3px solid #1F2A3A;background:#fff;color:#1F2A3A;cursor:pointer}
+#glines{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none}
+.rv{visibility:hidden}.rv.on{visibility:visible}
+.sgc.sel{border-color:#FBFBF8!important}
+.sgchip{font-family:inherit;font-size:34px;font-weight:700;padding:16px 28px;border-radius:16px;border:4px solid #BFD8D5;background:#2C3A50;color:#FBFBF8;cursor:pointer}
+.sgchip.sel{border-color:#FBFBF8;background:#3B4C66}
+.sgchip.bad,.sgc.bad{animation:gshake .5s;border-color:#F2A5A5!important}
+.sgmatch{font-size:30px;font-weight:700;padding:10px 20px;border-radius:12px;color:#1F2A3A}
+</style>
+</head>
+<body>
+<div id="stage">
+<section class="slide" id="cover" style="background:#1F2A3A;color:#FBFBF8;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:32px">
+<p style="font-size:32px;color:#E9B872">四湖國中　親職教育講座</p>
+<h1 style="font-size:120px;font-weight:700;line-height:1.2">陪孩子一起長大</h1>
+<p style="font-size:44px;color:#BFD8D5">用 SEL+4F對話，走過情緒、行為與人際</p>
+<p style="font-size:32px;color:#BFD8D5">I do ・ You do ・ We do</p>
+</section>
+<section class="slide" id="intro" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:72px;font-weight:700">講師介紹</h2>
+<div style="display:flex;gap:32px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:36px;border:1px solid #DDE3E1;border-radius:16px">
+<h3 style="font-size:36px;font-weight:700;color:#2A7F7A">陳彥揚</h3>
+<p style="font-size:30px;line-height:1.5">北港鎮辰光國小校長</p>
+<p style="font-size:30px;line-height:1.5">Master of Education in TESOL</p>
+<p style="font-size:30px;line-height:1.5">嘉義大學教育博士</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:36px;border:1px solid #DDE3E1;border-radius:16px">
+<h3 style="font-size:36px;font-weight:700;color:#2A7F7A">校長經歷</h3>
+<p style="font-size:30px;line-height:1.5">大興國小校長：社區經營</p>
+<p style="font-size:30px;line-height:1.5">興南國小校長：雙語學校</p>
+<p style="font-size:30px;line-height:1.5">辰光國小校長：SEL 社會情緒學習</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:36px;border:1px solid #DDE3E1;border-radius:16px">
+<h3 style="font-size:36px;font-weight:700;color:#2A7F7A">我的經驗及所聞</h3>
+<p style="font-size:30px;line-height:1.5">孩子的成長故事（家人、朋友、同事）</p>
+</div>
+</div>
+<p style="font-size:32px;color:#4A5568">今天不做評判，只分享與聆聽。</p>
+</section>
+<section class="slide" id="agenda" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:72px;font-weight:700">今天的流程（約 80 分鐘）</h2>
+<table style="font-family:'Noto Sans TC', Arial, sans-serif;font-size:36px;width:100%">
+<tr><th style="width:18%">時間</th><th style="width:34%">主題</th><th style="width:48%">我們要做的事</th></tr>
+<tr><td>0–10 分</td><td>開場與 SEL</td><td>認識五大社會情緒能力</td></tr>
+<tr><td>10–20 分</td><td>I do · You do · We do</td><td>了解課程的對話架構</td></tr>
+<tr><td>20–30 分</td><td>線上問卷</td><td>掃 QR Code，看見家長的困擾</td></tr>
+<tr><td>30–50 分</td><td>情緒、行為、人際</td><td>冰山三層與 I do ・ You do ・ We do</td></tr>
+<tr><td>50–65 分</td><td>情境演練</td><td>小組討論一個真實情境</td></tr>
+<tr><td>65–80 分</td><td>總結與 Q&amp;A</td><td>帶走一個可以明天就做的行動</td></tr>
+</table>
+</section>
+<section class="slide" id="sel" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif">
+<h2 style="position:absolute;left:96px;top:44px;font-size:56px;font-weight:700">SEL 五大核心 × 台語智慧　連連看</h2>
+<p id="gsub" style="position:absolute;left:96px;top:130px;font-size:32px;color:#4A5568">請觀眾猜猜看：哪一句台語智慧，對應哪一個 SEL 核心？（答案在下一頁）</p>
+<div class="nonav" style="position:absolute;right:96px;top:56px;display:flex;gap:16px">
+<button class="gbtn" id="gshuffle">重新洗牌</button></div>
+<div id="game" class="nonav" style="position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none"></div>
+<p id="gstatus" style="position:absolute;left:96px;top:985px;font-size:32px;font-weight:700;color:#2A7F7A">已配對 0 / 5</p>
+</section>
+<section class="slide" id="selans" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:72px 96px 80px;display:flex;flex-direction:column;gap:24px">
+<h2 style="font-size:56px;font-weight:700">SEL 五大核心 × 台語智慧　配對答案</h2>
+<p style="font-size:30px;color:#4A5568">老祖宗的話，其實就是 SEL。</p>
+<div style="display:flex;flex-direction:column;gap:22px"><div style="display:flex;align-items:center;gap:0"><div style="width:700px;box-sizing:border-box;border:4px solid #2A7F7A;background:#2A7F7A22;border-radius:20px;padding:18px 32px"><p style="font-size:40px;font-weight:700;color:#2A7F7A">自我覺察</p><p style="font-size:26px;color:#4A5568">知道自己的情緒與價值</p></div><div style="flex:1;height:8px;background:#2A7F7A;margin:0 -4px"></div><div style="width:700px;box-sizing:border-box;border:4px solid #2A7F7A;background:#2A7F7A22;border-radius:20px;padding:36px 32px"><p style="font-size:40px;font-weight:700;color:#2A7F7A">知輕重、幾兩重</p></div></div><div style="display:flex;align-items:center;gap:0"><div style="width:700px;box-sizing:border-box;border:4px solid #B7791F;background:#B7791F22;border-radius:20px;padding:18px 32px"><p style="font-size:40px;font-weight:700;color:#B7791F">自我管理</p><p style="font-size:26px;color:#4A5568">調整情緒與行為</p></div><div style="flex:1;height:8px;background:#B7791F;margin:0 -4px"></div><div style="width:700px;box-sizing:border-box;border:4px solid #B7791F;background:#B7791F22;border-radius:20px;padding:36px 32px"><p style="font-size:40px;font-weight:700;color:#B7791F">知吃知穿，知分寸</p></div></div><div style="display:flex;align-items:center;gap:0"><div style="width:700px;box-sizing:border-box;border:4px solid #2A5C8A;background:#2A5C8A22;border-radius:20px;padding:18px 32px"><p style="font-size:40px;font-weight:700;color:#2A5C8A">社會覺察</p><p style="font-size:26px;color:#4A5568">理解他人的立場與感受</p></div><div style="flex:1;height:8px;background:#2A5C8A;margin:0 -4px"></div><div style="width:700px;box-sizing:border-box;border:4px solid #2A5C8A;background:#2A5C8A22;border-radius:20px;padding:36px 32px"><p style="font-size:40px;font-weight:700;color:#2A5C8A">目色好</p></div></div><div style="display:flex;align-items:center;gap:0"><div style="width:700px;box-sizing:border-box;border:4px solid #8A4F9E;background:#8A4F9E22;border-radius:20px;padding:18px 32px"><p style="font-size:40px;font-weight:700;color:#8A4F9E">關係技巧</p><p style="font-size:26px;color:#4A5568">溝通、合作與解決衝突</p></div><div style="flex:1;height:8px;background:#8A4F9E;margin:0 -4px"></div><div style="width:700px;box-sizing:border-box;border:4px solid #8A4F9E;background:#8A4F9E22;border-radius:20px;padding:36px 32px"><p style="font-size:40px;font-weight:700;color:#8A4F9E">互相、人情留一線</p></div></div><div style="display:flex;align-items:center;gap:0"><div style="width:700px;box-sizing:border-box;border:4px solid #C2543F;background:#C2543F22;border-radius:20px;padding:18px 32px"><p style="font-size:40px;font-weight:700;color:#C2543F">負責任決定</p><p style="font-size:26px;color:#4A5568">考慮後果，做出合宜選擇</p></div><div style="flex:1;height:8px;background:#C2543F;margin:0 -4px"></div><div style="width:700px;box-sizing:border-box;border:4px solid #C2543F;background:#C2543F22;border-radius:20px;padding:36px 32px"><p style="font-size:40px;font-weight:700;color:#C2543F">做人要有肩胛頭</p></div></div></div>
+</section>
+
+<section class="slide" id="method" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:72px;font-weight:700">課程的對話架構：I do → You do → We do</h2>
+<div style="display:flex;gap:32px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFFFF;padding:40px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:48px;font-weight:700;color:#2A7F7A">I do</h3><p style="font-size:36px;font-weight:700">我的經驗與做法</p><p style="font-size:30px;line-height:1.5">先理解自己，不急著批判他人。</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFFFF;padding:40px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:48px;font-weight:700;color:#2A7F7A">You do</h3><p style="font-size:36px;font-weight:700">理解你的做法</p><p style="font-size:30px;line-height:1.5">換位思考，聽見孩子、家長與教師的不同觀點。</p><p style="font-size:30px;line-height:1.5;color:#2A7F7A;font-weight:700">講師 ⇄ 聽眾</p><p style="font-size:30px;line-height:1.5;color:#2A7F7A;font-weight:700">父母 ⇄ 孩子</p><p style="font-size:30px;line-height:1.5;color:#2A7F7A;font-weight:700">老師 ⇄ 學生</p><p style="font-size:30px;line-height:1.5;color:#2A7F7A;font-weight:700">朋友 ⇄ 朋友</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFFFF;padding:40px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:48px;font-weight:700;color:#2A7F7A">We do</h3><p style="font-size:36px;font-weight:700">我們一起找解方</p><p style="font-size:30px;line-height:1.5">用 4F 一起找解方：Facts 事實 → Feelings 感受 → Findings 發現 → Future 未來。</p></div>
+</div>
+</section>
+<section class="slide" id="fourf" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="font-size:64px;font-weight:700">4F 的核心要素與提問方向</h2><p style="font-size:48px;font-weight:700;color:#2A7F7A">事實 → 感受 → 發現 → 未來</p></div>
+<p style="font-size:32px;line-height:1.5;color:#4A5568">英國學者羅貴榮（Roger Greenaway）提出的一種結構化反思與對話工具。</p>
+<p style="font-size:34px;font-weight:700;color:#2A7F7A">例子：孩子罵了髒話。別說「你怎麼這麼沒禮貌！」，改用 4F 對話：</p>
+<div style="display:flex;gap:24px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#E3EEF5;padding:32px;border-radius:16px"><h3 style="font-size:36px;font-weight:700">1 · Facts 事實</h3><p style="font-size:30px;font-weight:700;color:#2A7F7A;line-height:1.4">說出發生了什麼</p><p style="font-size:30px;line-height:1.5">發生了什麼事？</p><p style="font-size:30px;line-height:1.5">不評論，只還原過程。</p><div style="margin-top:auto;background:#FFFFFF;border-radius:12px;padding:20px 24px;display:flex;flex-direction:column;gap:8px"><p style="font-size:24px;font-weight:700;color:#8A3B3B">例子</p><p style="font-size:28px;line-height:1.5">「我剛剛聽到你說了一句髒話。」</p></div></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FBE4E4;padding:32px;border-radius:16px"><h3 style="font-size:36px;font-weight:700">2 · Feelings 感受</h3><p style="font-size:30px;font-weight:700;color:#2A7F7A;line-height:1.4">覺察當下的心情</p><p style="font-size:30px;line-height:1.5">你當下的心情如何？</p><p style="font-size:30px;line-height:1.5">哪一部分最挫折、最開心？</p><div style="margin-top:auto;background:#FFFFFF;border-radius:12px;padding:20px 24px;display:flex;flex-direction:column;gap:8px"><p style="font-size:24px;font-weight:700;color:#8A3B3B">例子</p><p style="font-size:28px;line-height:1.5">「我有點嚇到，也很想知道，你是不是很生氣？」</p></div></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#F8EBC8;padding:32px;border-radius:16px"><h3 style="font-size:36px;font-weight:700">3 · Findings 發現</h3><p style="font-size:30px;font-weight:700;color:#2A7F7A;line-height:1.4">找出原因與收穫</p><p style="font-size:30px;line-height:1.5">你學到了什麼？</p><p style="font-size:30px;line-height:1.5">事情為什麼會這樣？</p><div style="margin-top:auto;background:#FFFFFF;border-radius:12px;padding:20px 24px;display:flex;flex-direction:column;gap:8px"><p style="font-size:24px;font-weight:700;color:#8A3B3B">例子</p><p style="font-size:28px;line-height:1.5">「剛剛發生了什麼事？你是想表達什麼？」</p></div></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#E1EBDD;padding:32px;border-radius:16px"><h3 style="font-size:36px;font-weight:700">4 · Future 未來</h3><p style="font-size:30px;font-weight:700;color:#2A7F7A;line-height:1.4">訂出下一步</p><p style="font-size:30px;line-height:1.5">下次遇到，你會怎麼做？</p><p style="font-size:30px;line-height:1.5">具體的下一步是什麼？</p><div style="margin-top:auto;background:#FFFFFF;border-radius:12px;padding:20px 24px;display:flex;flex-direction:column;gap:8px"><p style="font-size:24px;font-weight:700;color:#8A3B3B">例子</p><p style="font-size:28px;line-height:1.5">「下次生氣，我們可以怎麼說？一起想一句替代的話。」</p></div></div>
+</div>
+</section>
+<section class="slide" id="ice" style="background:#1F2A3A;color:#FBFBF8;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<h2 style="font-size:64px;font-weight:700;color:#E9B872">冰山理論：看見水面下的原因</h2>
+<div style="display:flex;gap:56px;align-items:center;flex:1">
+<svg width="560" height="560" viewBox="0 0 640 640" aria-label="冰山圖：水面上是行為表層，水面下依序是結構層面與價值信念">
+<rect x="0" y="250" width="640" height="390" rx="24" fill="#2C3A50"/>
+<polygon points="215,250 300,70 355,140 425,250" fill="#FBFBF8"/>
+<polygon points="150,250 490,250 545,420 95,420" fill="#7DB4E6"/>
+<polygon points="95,420 545,420 480,540 320,610 170,540" fill="#2A5C8A"/>
+<line x1="0" y1="250" x2="640" y2="250" stroke="#BFD8D5" stroke-width="4" stroke-dasharray="14 10"/>
+</svg>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<div style="background:#FBFBF8;color:#1F2A3A;border-radius:16px;padding:24px 32px;display:flex;flex-direction:column;gap:6px"><h3 style="font-size:36px;font-weight:700">第一層：行為表層</h3><p style="font-size:28px;line-height:1.4">我們看得到的：吼叫、拖延、頂嘴、冷戰。</p></div>
+<div style="background:#7DB4E6;color:#1F2A3A;border-radius:16px;padding:24px 32px;display:flex;flex-direction:column;gap:6px"><h3 style="font-size:36px;font-weight:700">第二層：結構層面</h3><p style="font-size:28px;line-height:1.4">一再重演的模式與環境：作息、規則、溝通方式、親師做法。</p></div>
+<div style="background:#2A5C8A;color:#FBFBF8;border-radius:16px;padding:24px 32px;display:flex;flex-direction:column;gap:6px"><h3 style="font-size:36px;font-weight:700">第三層：價值信念</h3><p style="font-size:28px;line-height:1.4">心裡相信的：「我必須…」「這樣才是好孩子」。</p></div>
+<div style="border:3px dashed #E9B872;border-radius:16px;padding:18px 32px;display:flex;flex-direction:column;gap:6px"><p style="font-size:28px;font-weight:700;color:#E9B872">例：學校體育館的牆面都是鳥屎</p></div>
+</div>
+</div>
+</section>
+<section class="slide" id="qr" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:72px;font-weight:700">請掃描 QR Code 填寫問卷</h2>
+<div style="display:flex;gap:64px;flex:1;align-items:center">
+<div id="qrbox" style="width:520px;height:520px;flex:none;background:#FFFFFF;border-radius:16px;display:flex;align-items:center;justify-content:center"></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:36px;line-height:1.5">三大範圍：情緒、行為、人際</p>
+<p style="font-size:36px;line-height:1.5">每區勾選孩子最近一個月的情況，約 1 分鐘。</p>
+<p style="font-size:36px;line-height:1.5">不記名，只用來決定今天討論哪些情境。</p>
+<p style="font-size:32px;color:#4A5568;line-height:1.5">送出後，手機會立刻顯示大家選項的長條圖。</p>
+<p id="urltxt" style="font-size:28px;color:#2A7F7A;word-break:break-all"></p>
+</div>
+</div>
+</section>
+<section class="slide" id="results" style="background:#1F2A3A;color:#FBFBF8;font-family:'Noto Sans TC', Arial, sans-serif;padding:72px 96px 72px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;align-items:baseline;gap:32px"><h2 style="font-size:64px;font-weight:700">家長選項統計</h2><p id="livetotal" style="font-size:36px;color:#E9B872"></p><p id="livenote" style="font-size:28px;color:#BFD8D5;margin-left:auto"></p></div>
+<div id="live" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;flex:1"></div>
+<button id="clearbtn" style="position:absolute;right:48px;bottom:20px;font-size:24px;color:#BFD8D5;background:transparent;border:2px solid #BFD8D5;border-radius:12px;padding:8px 20px;cursor:pointer;font-family:inherit">清除紀錄，重新統計</button>
+</section>
+<section class="slide" id="sec-emo" style="background:#2A7F7A;color:#FBFBF8;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:24px">
+<p style="font-size:36px;color:#E9F3F1">第一領域</p>
+<h2 style="font-size:120px;font-weight:700">情緒</h2>
+<p style="font-size:44px;color:#E9F3F1">情緒調適與心理需求</p>
+</section>
+<section class="slide" id="emo1" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:64px;font-weight:700">情緒 · I do：我如何處理生氣、焦慮與挫折？</h2>
+<div style="display:flex;gap:32px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:40px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:36px;font-weight:700;color:#2A7F7A">先想一個最近的情境</h3><p style="font-size:30px;line-height:1.5">孩子早上拖拖拉拉、快遲到了，我生氣地說了什麼？</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:40px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:36px;font-weight:700;color:#2A7F7A">我身體的訊號</h3><p style="font-size:30px;line-height:1.5">心跳加快、聲音變大、想離開現場。</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:40px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:36px;font-weight:700;color:#2A7F7A">我的做法</h3><p style="font-size:30px;line-height:1.5">[講師自己的經驗]</p><p style="font-size:30px;line-height:1.5">學校孩子情緒的處理經驗</p></div>
+</div>
+<p style="font-size:30px;color:#4A5568">小組分享：用一句話說出你的做法。</p>
+</section>
+<section class="slide" id="emo2" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:64px;font-weight:700">情緒 · You do：情緒背後的原因</h2>
+<p style="font-size:36px;line-height:1.5">孩子的情緒，常常有我們看不見的理由。</p>
+<table style="font-family:'Noto Sans TC', Arial, sans-serif;font-size:32px;width:100%">
+<tr><th style="width:30%">看到的行為</th><th style="width:35%">可能的背後感受</th><th style="width:35%">家長可以問的問題</th></tr>
+<tr><td>一回家就大吼、把房門甩上</td><td>學校受挫、被誤解</td><td>今天學校發生什麼事？</td></tr>
+<tr><td>晚上翻來覆去、說肚子痛不想上學</td><td>擔心明天在學校發生的事、怕被笑</td><td>你最擔心的是哪一部分？</td></tr>
+<tr><td>不肯說話、把門關上</td><td>覺得沒有人聽他說</td><td>我想聽你說，你願意說多少都可以</td></tr>
+</table>
+</section>
+<section class="slide" id="emo-ice" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<h2 style="font-size:64px;font-weight:700">情緒 · 冰山分析</h2>
+<div style="display:flex;gap:24px;align-items:stretch">
+<div style="width:380px;background:#E9EEF2;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:8px"><h3 style="font-size:36px;font-weight:700">第一層：行為表層</h3><p style="font-size:26px;color:#4A5568">問：發生什麼事？</p></div>
+<div style="flex:1;background:#FFFFFF;border:1px solid #DDE3E1;border-radius:16px;padding:28px;display:flex;align-items:center"><p style="font-size:32px;line-height:1.5">大吼、哭、甩門、不說話</p></div>
+</div>
+<div style="display:flex;gap:24px;align-items:stretch">
+<div style="width:380px;background:#7DB4E6;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:8px"><h3 style="font-size:36px;font-weight:700">第二層：結構層面</h3><p style="font-size:26px">問：什麼情境一再重演？</p></div>
+<div style="flex:1;background:#FFFFFF;border:1px solid #DDE3E1;border-radius:16px;padding:28px;display:flex;align-items:center"><p style="font-size:32px;line-height:1.5">吵完就冷戰；睡眠不足；早上總是趕時間；家裡沒有談感受的時間</p></div>
+</div>
+<div style="display:flex;gap:24px;align-items:stretch">
+<div style="width:380px;background:#2A5C8A;color:#FBFBF8;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:8px"><h3 style="font-size:36px;font-weight:700">第三層：價值信念</h3><p style="font-size:26px">問：這對你為什麼重要？</p></div>
+<div style="flex:1;background:#FFFFFF;border:1px solid #DDE3E1;border-radius:16px;padding:28px;display:flex;align-items:center"><p style="font-size:32px;line-height:1.5">「哭就是愛哭、丟臉」「表現出情緒是軟弱」</p></div>
+</div>
+</section>
+<section class="slide" id="emo3" style="background:#1F2A3A;color:#FBFBF8;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:64px;font-weight:700;color:#E9B872">情緒 · We do：一起建立調節策略（4F）</h2>
+<div style="display:flex;gap:24px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#2C3A50;padding:36px;border-radius:16px"><h3 style="font-size:36px;font-weight:700">1 · Facts 事實</h3><p class="rv" style="font-size:28px;line-height:1.5">先說看到、聽到的事實：「剛剛你把門關得很大聲。」不加評論。</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#2C3A50;padding:36px;border-radius:16px"><h3 style="font-size:36px;font-weight:700">2 · Feelings 感受</h3><p class="rv" style="font-size:28px;line-height:1.5">說出自己與對方的感受：「我現在很擔心…」取代「你怎麼又…」</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#2C3A50;padding:36px;border-radius:16px"><h3 style="font-size:36px;font-weight:700">3 · Findings 發現</h3><p class="rv" style="font-size:28px;line-height:1.5">一起找出原因與需要：這個情緒在提醒我們什麼？深呼吸三次，再開口。</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#2C3A50;padding:36px;border-radius:16px"><h3 style="font-size:36px;font-weight:700">4 · Future 未來</h3><p class="rv" style="font-size:28px;line-height:1.5">約定下次怎麼做：家庭共同約定情緒來時去哪裡、做什麼。</p></div>
+</div>
+</section>
+<section class="slide" id="sec-beh" style="background:#9A5B17;color:#FBFBF8;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:24px">
+<p style="font-size:36px;color:#F6E7D2">第二領域</p>
+<h2 style="font-size:120px;font-weight:700">行為</h2>
+<p style="font-size:44px;color:#F6E7D2">行為表現與自我管理</p>
+</section>
+<section class="slide" id="beh1" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:64px;font-weight:700">行為 · I do：我如何面對規範、拖延與責任？</h2>
+<div style="display:flex;gap:32px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:40px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:36px;font-weight:700;color:#2A7F7A">我定的規則</h3><p style="font-size:30px;line-height:1.5">家裡有哪些規範？誰訂的？</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:40px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:36px;font-weight:700;color:#2A7F7A">我的提醒方式</h3><p style="font-size:30px;line-height:1.5">一直唸？一次說清楚？還是不管？</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:40px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:36px;font-weight:700;color:#2A7F7A">我的後果處理</h3><p style="font-size:30px;line-height:1.5">[講師自己的經驗]</p></div>
+</div>
+</section>
+<section class="slide" id="beh2" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:64px;font-weight:700">行為 · You do：拖延背後可能是什麼？</h2>
+<p style="font-size:36px;line-height:1.5">同樣是「拖延作業」，原因可能完全不同。</p>
+<div style="display:flex;flex-wrap:wrap;gap:24px">
+<p style="font-size:32px;background:#FFFFFF;border:1px solid #DDE3E1;border-radius:16px;padding:24px 32px">挫折感</p>
+<p style="font-size:32px;background:#FFFFFF;border:1px solid #DDE3E1;border-radius:16px;padding:24px 32px">不會做、缺乏方法</p>
+<p style="font-size:32px;background:#FFFFFF;border:1px solid #DDE3E1;border-radius:16px;padding:24px 32px">注意力困難</p>
+<p style="font-size:32px;background:#FFFFFF;border:1px solid #DDE3E1;border-radius:16px;padding:24px 32px">親子衝突後的抗拒</p>
+<p style="font-size:32px;background:#FFFFFF;border:1px solid #DDE3E1;border-radius:16px;padding:24px 32px">對課業失去動機</p>
+</div>
+<p style="font-size:32px;color:#4A5568">先問原因，再談策略。若懷疑注意力或學習困難，請轉介學校輔導。</p>
+</section>
+<section class="slide" id="beh-ice" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<h2 style="font-size:64px;font-weight:700">行為 · 冰山分析</h2>
+<div style="display:flex;gap:24px;align-items:stretch">
+<div style="width:380px;background:#E9EEF2;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:8px"><h3 style="font-size:36px;font-weight:700">第一層：行為表層</h3><p style="font-size:26px;color:#4A5568">問：發生什麼事？</p></div>
+<div style="flex:1;background:#FFFFFF;border:1px solid #DDE3E1;border-radius:16px;padding:28px;display:flex;align-items:center"><p style="font-size:32px;line-height:1.5">拖延作業、頂嘴、一直滑手機、不守規定</p></div>
+</div>
+<div style="display:flex;gap:24px;align-items:stretch">
+<div style="width:380px;background:#7DB4E6;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:8px"><h3 style="font-size:36px;font-weight:700">第二層：結構層面</h3><p style="font-size:26px">問：什麼情境一再重演？</p></div>
+<div style="flex:1;background:#FFFFFF;border:1px solid #DDE3E1;border-radius:16px;padding:28px;display:flex;align-items:center"><p style="font-size:32px;line-height:1.5">規則由大人單方決定；手機放在房間；獎懲前後不一致；家與學校要求不同</p></div>
+</div>
+<div style="display:flex;gap:24px;align-items:stretch">
+<div style="width:380px;background:#2A5C8A;color:#FBFBF8;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:8px"><h3 style="font-size:36px;font-weight:700">第三層：價值信念</h3><p style="font-size:26px">問：這對你為什麼重要？</p></div>
+<div style="flex:1;background:#FFFFFF;border:1px solid #DDE3E1;border-radius:16px;padding:28px;display:flex;align-items:center"><p style="font-size:32px;line-height:1.5">「聽話才是好孩子」「現在放鬆就會輸」「反正我做不好」</p></div>
+</div>
+</section>
+<section class="slide" id="beh3" style="background:#1F2A3A;color:#FBFBF8;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:64px;font-weight:700;color:#E9B872">行為 · We do：共同訂出可執行的規範（4F）</h2>
+<div style="display:flex;gap:24px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#2C3A50;padding:36px;border-radius:16px"><h3 style="font-size:36px;font-weight:700">1 · Facts 事實</h3><p style="font-size:28px;line-height:1.5">先看事實<span class="rv">：這週有幾天超過 9 點還在玩？手機放在哪裡？</span></p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#2C3A50;padding:36px;border-radius:16px"><h3 style="font-size:36px;font-weight:700">2 · Feelings 感受</h3><p style="font-size:28px;line-height:1.5">各自說感受<span class="rv">：家長擔心作息，孩子在意被限制。</span></p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#2C3A50;padding:36px;border-radius:16px"><h3 style="font-size:36px;font-weight:700">3 · Findings 發現</h3><p style="font-size:28px;line-height:1.5">找出原因<span class="rv">：約定卡在哪裡？是時段、誘惑，還是沒有檢討？</span></p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#2C3A50;padding:36px;border-radius:16px"><h3 style="font-size:36px;font-weight:700">4 · Future 未來</h3><p style="font-size:28px;line-height:1.5">共同約定<span class="rv">：平日 9 點後不玩遊戲、手機放客廳充電；違反先提醒一次，第二次當天暫停一項娛樂；每週日晚上 15 分鐘檢討。</span></p></div>
+</div>
+</section>
+<section class="slide" id="sec-int" style="background:#2A5C8A;color:#FBFBF8;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:24px">
+<p style="font-size:36px;color:#DCE9F5">第三領域</p>
+<h2 style="font-size:120px;font-weight:700">人際</h2>
+<p style="font-size:44px;color:#DCE9F5">人際互動與關係經營</p>
+</section>
+<section class="slide" id="int1" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:64px;font-weight:700">人際 · I do：我如何處理衝突與溝通？</h2>
+<div style="display:flex;gap:32px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:40px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:36px;font-weight:700;color:#2A7F7A">我怎麼開口</h3><p style="font-size:30px;line-height:1.5">吵架時，我通常是說教、冷戰，還是先道歉？</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:40px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:36px;font-weight:700;color:#2A7F7A">我怎麼修復</h3><p style="font-size:30px;line-height:1.5">事後會不會回來談？</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:40px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:36px;font-weight:700;color:#2A7F7A">我的經驗</h3><p style="font-size:30px;line-height:1.5">[講師自己的經驗]</p><p style="font-size:30px;line-height:1.5">不會生氣的另一半</p></div>
+</div>
+</section>
+<section class="slide" id="int2" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:64px;font-weight:700">人際 · You do：不同立場，不同感受</h2>
+<table style="font-family:'Noto Sans TC', Arial, sans-serif;font-size:32px;width:100%">
+<tr><th style="width:24%">角色</th><th style="width:38%">可能的感受</th><th style="width:38%">可能的期待</th></tr>
+<tr><td>孩子</td><td>覺得不被了解、被管太多</td><td>被尊重、有自己的空間</td></tr>
+<tr><td>家長</td><td>擔心、著急、怕孩子走偏</td><td>孩子能守規矩、懂得負責</td></tr>
+<tr><td>教師</td><td>在班上的管理壓力</td><td>家校一起支持孩子</td></tr>
+</table>
+<p style="font-size:32px;color:#4A5568">同一件事，三個人看見的不一樣。先看見，才能合作。</p>
+</section>
+<section class="slide" id="int-ice" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<h2 style="font-size:64px;font-weight:700">人際 · 冰山分析</h2>
+<div style="display:flex;gap:24px;align-items:stretch">
+<div style="width:380px;background:#E9EEF2;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:8px"><h3 style="font-size:36px;font-weight:700">第一層：行為表層</h3><p style="font-size:26px;color:#4A5568">問：發生什麼事？</p></div>
+<div style="flex:1;background:#FFFFFF;border:1px solid #DDE3E1;border-radius:16px;padding:28px;display:flex;align-items:center"><p style="font-size:32px;line-height:1.5">爭吵、冷戰、不敢拒絕、總是一個人</p></div>
+</div>
+<div style="display:flex;gap:24px;align-items:stretch">
+<div style="width:380px;background:#7DB4E6;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:8px"><h3 style="font-size:36px;font-weight:700">第二層：結構層面</h3><p style="font-size:26px">問：什麼情境一再重演？</p></div>
+<div style="flex:1;background:#FFFFFF;border:1px solid #DDE3E1;border-radius:16px;padding:28px;display:flex;align-items:center"><p style="font-size:32px;line-height:1.5">溝通常是責備多於傾聽；少有談心時間；班上小團體；親師溝通管道不順</p></div>
+</div>
+<div style="display:flex;gap:24px;align-items:stretch">
+<div style="width:380px;background:#2A5C8A;color:#FBFBF8;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:8px"><h3 style="font-size:36px;font-weight:700">第三層：價值信念</h3><p style="font-size:26px">問：這對你為什麼重要？</p></div>
+<div style="flex:1;background:#FFFFFF;border:1px solid #DDE3E1;border-radius:16px;padding:28px;display:flex;align-items:center"><p style="font-size:32px;line-height:1.5">「表達意見會被討厭」「不要給別人添麻煩」「大人的話不能質疑」</p></div>
+</div>
+</section>
+<section class="slide" id="int3" style="background:#1F2A3A;color:#FBFBF8;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:64px;font-weight:700;color:#E9B872">人際 · We do：練習溝通、修復與合作（4F）</h2>
+<div style="display:flex;gap:24px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#2C3A50;padding:36px;border-radius:16px"><h3 style="font-size:36px;font-weight:700">1 · Facts 事實</h3><p style="font-size:28px;line-height:1.5">只說具體發生的事<span class="rv">：「剛剛我們說到一半，你就走開了。」不指責、不猜動機。</span></p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#2C3A50;padding:36px;border-radius:16px"><h3 style="font-size:36px;font-weight:700">2 · Feelings 感受</h3><p style="font-size:28px;line-height:1.5">說出我的感受，再邀請對方說<span class="rv">：「我擔心…」「我很失望…」「我很好奇…」「你覺得呢？」先聽完再回應。</span></p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#2C3A50;padding:36px;border-radius:16px"><h3 style="font-size:36px;font-weight:700">3 · Findings 發現</h3><p style="font-size:28px;line-height:1.5">一起找出彼此在意的是什麼<span class="rv">：誤會在哪裡？各自需要什麼？</span></p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#2C3A50;padding:36px;border-radius:16px"><h3 style="font-size:36px;font-weight:700">4 · Future 未來</h3><p style="font-size:28px;line-height:1.5">一起定下一步<span class="rv">：今天能做的一件小事是什麼？</span></p></div>
+</div>
+</section>
+<section class="slide" id="scenario" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:64px;font-weight:700">情境示範：孩子因手機使用與父母吵架</h2>
+<div style="display:flex;gap:32px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:40px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:40px;font-weight:700;color:#2A7F7A">I do</h3><p style="font-size:30px;line-height:1.5">家長分享如何訂手機規範；孩子分享被限制的感受；教師分享在校觀察。</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:40px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:40px;font-weight:700;color:#2A7F7A">You do</h3><p style="font-size:30px;line-height:1.5">家長理解孩子的社交需求；孩子理解家長擔心作息與學習。</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:40px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:40px;font-weight:700;color:#2A7F7A">We do</h3><p style="font-size:30px;line-height:1.5">4F：先看事實（每天用幾小時）→ 說感受 → 找原因 → 約定使用時段、睡前管理與每週檢討。</p></div>
+</div>
+</section>
+<section class="slide" id="sol1" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<h2 style="font-size:56px;font-weight:700">手機的解方 1 · 4F：先理解，再管理</h2>
+<div style="display:flex;gap:24px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#E3EEF5;padding:32px;border-radius:16px"><h3 style="font-size:38px;font-weight:700">1 · Facts 事實</h3><p style="font-size:28px;line-height:1.5">先觀察：</p><p style="font-size:28px;line-height:1.5">孩子都在什麼時候想使用？</p><p style="font-size:28px;line-height:1.5">使用前發生了什麼？</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FBE4E4;padding:32px;border-radius:16px"><h3 style="font-size:38px;font-weight:700">2 · Feelings 感受</h3><p style="font-size:28px;line-height:1.5">使用後情緒如何？</p><p style="font-size:24px;color:#8A3B3B;font-weight:700">先別這樣說</p><p style="font-size:26px;line-height:1.4;background:#FFFFFF;border-radius:12px;padding:14px 18px">「你整天只會玩手機！」</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#F8EBC8;padding:32px;border-radius:16px"><h3 style="font-size:38px;font-weight:700">3 · Findings 發現</h3><p style="font-size:28px;line-height:1.5">是否影響睡眠、學習或家庭生活？</p><p style="font-size:24px;color:#2E6B3A;font-weight:700">把質問改成理解</p><p style="font-size:26px;line-height:1.4;background:#FFFFFF;border-radius:12px;padding:14px 18px">「我注意到你今天回家後一直想玩遊戲，我想知道今天是不是發生了什麼事？」</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#E1EBDD;padding:32px;border-radius:16px"><h3 style="font-size:38px;font-weight:700">4 · Future 未來</h3><p style="font-size:28px;line-height:1.5">一起約定下一步：先理解，再管理。</p><p style="font-size:28px;line-height:1.5">接著訂出大家都做得到的 3C 約定。</p></div>
+</div>
+</section>
+<section class="slide" id="sol2" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<h2 style="font-size:56px;font-weight:700">手機的解方 2 · 家庭 3C 約定（4F）</h2>
+<p style="font-size:34px;line-height:1.5;color:#4A5568">規則的目的不是抓到違規，而是讓孩子知道怎麼做、怎麼結束、怎麼修復。</p>
+<div style="display:flex;gap:24px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#E3EEF5;padding:32px;border-radius:16px"><h3 style="font-size:38px;font-weight:700">1 · Facts 事實</h3><p style="font-size:28px;line-height:1.5">現在怎麼用？什麼時候用、在哪裡用、用多久？</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FBE4E4;padding:32px;border-radius:16px"><h3 style="font-size:38px;font-weight:700">2 · Feelings 感受</h3><p style="font-size:28px;line-height:1.5">用的時候、被提醒或被限制的時候，各自是什麼感覺？</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#F8EBC8;padding:32px;border-radius:16px"><h3 style="font-size:38px;font-weight:700">3 · Findings 發現</h3><p style="font-size:28px;line-height:1.5">什麼時候最容易停不下來？背後需要的是什麼？</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#E1EBDD;padding:32px;border-radius:16px"><h3 style="font-size:38px;font-weight:700">4 · Future 未來</h3><p style="font-size:28px;line-height:1.5">一起約定：</p><p style="font-size:28px;line-height:1.5">什麼時候可以用、不能用？</p><p style="font-size:28px;line-height:1.5">哪些地方不使用？</p><p style="font-size:28px;line-height:1.5">使用多久後休息？</p><p style="font-size:28px;line-height:1.5">怎麼提醒自己結束？</p><p style="font-size:28px;line-height:1.5">沒做到，怎麼修復？</p></div>
+</div>
+<p style="font-size:36px;font-weight:700;color:#2A7F7A">規則不是父母單方面宣布，而是一起練習。</p>
+</section>
+<section class="slide" id="sol3" style="background:#1F2A3A;color:#FBFBF8;font-family:'Noto Sans TC', Arial, sans-serif;padding:56px 96px 48px;display:flex;flex-direction:column;gap:20px">
+<h2 style="font-size:52px;font-weight:700;color:#E9B872">4F × SEL 五大核心　連連看</h2>
+<p style="font-size:30px;color:#BFD8D5">孩子停不下來怎麼辦？先點一張 4F 卡片，再點下方相配的 SEL 核心。</p>
+<button class="gbtn nonav" id="sgshuffle" style="position:absolute;right:96px;top:56px;background:#2C3A50;color:#FBFBF8;border-color:#BFD8D5">重新洗牌</button>
+<div class="nonav" id="sgcards" style="display:flex;gap:24px;flex:1"><div class="sgc" data-c="0" style="flex:1;background:#2C3A50;border:4px solid transparent;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:14px;cursor:pointer"><h3 style="font-size:38px;font-weight:700;color:#F2A5A5">1 · Facts 事實</h3><p style="font-size:30px;line-height:1.5">先離開螢幕一下，說出剛剛發生的事。</p><div class="sgslot" style="margin-top:auto;display:flex;flex-direction:column;gap:10px;min-height:150px;justify-content:flex-end"></div></div><div class="sgc" data-c="1" style="flex:1;background:#2C3A50;border:4px solid transparent;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:14px;cursor:pointer"><h3 style="font-size:38px;font-weight:700;color:#E9B872">2 · Feelings 感受</h3><p style="font-size:30px;line-height:1.5">我現在是什麼感覺？</p><div class="sgslot" style="margin-top:auto;display:flex;flex-direction:column;gap:10px;min-height:150px;justify-content:flex-end"></div></div><div class="sgc" data-c="2" style="flex:1;background:#2C3A50;border:4px solid transparent;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:14px;cursor:pointer"><h3 style="font-size:38px;font-weight:700;color:#8FD1A0">3 · Findings 發現</h3><p style="font-size:30px;line-height:1.5">聽聽自己的需要，也聽聽家人怎麼說。</p><div class="sgslot" style="margin-top:auto;display:flex;flex-direction:column;gap:10px;min-height:150px;justify-content:flex-end"></div></div><div class="sgc" data-c="3" style="flex:1;background:#2C3A50;border:4px solid transparent;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:14px;cursor:pointer"><h3 style="font-size:38px;font-weight:700;color:#9CC3E8">4 · Future 未來</h3><p style="font-size:30px;line-height:1.5">一起決定接下來怎麼做。</p><div class="sgslot" style="margin-top:auto;display:flex;flex-direction:column;gap:10px;min-height:150px;justify-content:flex-end"></div></div></div>
+<div class="nonav" id="sgpool" style="display:flex;gap:20px;justify-content:center"></div>
+<p id="sgstatus" style="font-size:32px;line-height:1.4;color:#BFD8D5;min-height:46px">已配對 0 / 5</p>
+</section>
+<section class="slide" id="story" style="background:#1F2A3A;color:#FBFBF8;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:40px">
+<p style="font-size:36px;color:#E9B872">講師的親身經驗</p>
+<h2 style="font-size:88px;font-weight:700;line-height:1.3">「我以為我是在教他，<br>其實是我需要先學會聽。」</h2>
+</section>
+<section class="slide" id="practice" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:48px 96px 44px;display:flex;flex-direction:column;gap:16px">
+<h2 style="font-size:52px;font-weight:700">小組練習（約 15 分鐘）</h2>
+<ol style="font-size:32px;line-height:1.5;display:flex;flex-direction:column;gap:4px">
+<li>每位家長寫下一個家裡最近的困擾（一句話）。</li>
+<li>4F 練習：從下面三題（或自己的困擾）選一題，依 Facts → Feelings → Findings → Future，產出一個行動：時間、地點、誰、做什麼。</li>
+<li>組內分享。</li>
+</ol>
+<div style="display:flex;gap:20px"><div style="flex:1;background:#FFFFFF;border:1px solid #DDE3E1;border-top:10px solid #2A7F7A;border-radius:12px;padding:16px 24px"><p style="font-size:26px;font-weight:700;color:#2A7F7A">情境題 · 情緒</p><p style="font-size:28px;line-height:1.4">孩子段考退步，把書包丟在地上說：「我就是笨，不想念了！」</p></div><div style="flex:1;background:#FFFFFF;border:1px solid #DDE3E1;border-top:10px solid #B7791F;border-radius:12px;padding:16px 24px"><p style="font-size:26px;font-weight:700;color:#B7791F">情境題 · 行為</p><p style="font-size:28px;line-height:1.4">晚上十一點，孩子還躲在棉被裡玩手機，一開口就大吼：「不要管我！」</p></div><div style="flex:1;background:#FFFFFF;border:1px solid #DDE3E1;border-top:10px solid #2A5C8A;border-radius:12px;padding:16px 24px"><p style="font-size:26px;font-weight:700;color:#2A5C8A">情境題 · 人際</p><p style="font-size:28px;line-height:1.4">孩子放學很生氣：「我再也不要跟小明當朋友了！他當著大家的面笑我！」</p></div></div>
+<div style="display:flex;gap:20px;flex:1"><div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#E3EEF5;padding:24px 28px;border-radius:16px"><h3 style="font-size:34px;font-weight:700">1 · Facts 事實</h3><p style="font-size:30px;font-weight:700;color:#2A7F7A">發生了什麼事？</p><p style="font-size:26px;color:#4A5568">客觀記錄，不加情緒。</p><div style="flex:1;background:#FFFFFF;border-radius:12px;border:3px dashed #9AA6B4;padding:12px 18px;display:flex;align-items:flex-end"><p style="font-size:24px;color:#9AA6B4">你會怎麼說？</p></div></div><div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#FBE4E4;padding:24px 28px;border-radius:16px"><h3 style="font-size:34px;font-weight:700">2 · Feelings 感受</h3><p style="font-size:30px;font-weight:700;color:#2A7F7A">當時心情如何？</p><p style="font-size:26px;color:#4A5568">緊張、挫折，還是開心？</p><div style="flex:1;background:#FFFFFF;border-radius:12px;border:3px dashed #9AA6B4;padding:12px 18px;display:flex;align-items:flex-end"><p style="font-size:24px;color:#9AA6B4">你會怎麼說？</p></div></div><div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#F8EBC8;padding:24px 28px;border-radius:16px"><h3 style="font-size:34px;font-weight:700">3 · Findings 發現</h3><p style="font-size:30px;font-weight:700;color:#2A7F7A">為什麼會這樣？</p><p style="font-size:26px;color:#4A5568">學到什麼？有什麼盲點？</p><div style="flex:1;background:#FFFFFF;border-radius:12px;border:3px dashed #9AA6B4;padding:12px 18px;display:flex;align-items:flex-end"><p style="font-size:24px;color:#9AA6B4">你會怎麼說？</p></div></div><div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#E1EBDD;padding:24px 28px;border-radius:16px"><h3 style="font-size:34px;font-weight:700">4 · Future 未來</h3><p style="font-size:30px;font-weight:700;color:#2A7F7A">下次要怎麼調整？</p><p style="font-size:26px;color:#4A5568">具體的下一步行動。</p><div style="flex:1;background:#FFFFFF;border-radius:12px;border:3px dashed #9AA6B4;padding:12px 18px;display:flex;align-items:flex-end"><p style="font-size:24px;color:#9AA6B4">你會怎麼說？</p></div></div></div>
+
+</section>
+<section class="slide" id="closing" style="background:#1F2A3A;color:#FBFBF8;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:40px">
+<h2 style="font-size:88px;font-weight:700">今天帶走一個行動</h2>
+<ul style="font-size:40px;line-height:1.7;color:#BFD8D5">
+<li>先停一下，說出一個感受</li>
+<li>問一個「發生什麼事」的問題</li>
+<li>和孩子一起訂一條明天就能做的約定</li>
+</ul>
+<p style="font-size:36px;color:#E9B872">謝謝大家。Q&amp;A</p>
+</section>
+<section class="slide" id="feedback" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:72px;font-weight:700">請掃描 QR Code 填寫課後回饋</h2>
+<div style="display:flex;gap:64px;flex:1;align-items:center">
+<div id="qrfb" style="width:520px;height:520px;flex:none;background:#FFFFFF;border-radius:16px;display:flex;align-items:center;justify-content:center"></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:36px;line-height:1.5">8 個小題目，約 3 分鐘。</p>
+<p style="font-size:36px;line-height:1.5">不記名，只用來讓下一次的課程更好。</p>
+<p style="font-size:32px;color:#4A5568;line-height:1.5">謝謝您的分享與建議。</p>
+</div>
+</div>
+</section>
+<section class="slide" id="rel" style="background:#1F2A3A;color:#FBFBF8;font-family:'Noto Sans TC', Arial, sans-serif">
+<div style="position:absolute;left:80px;top:36px;font-size:56px;font-weight:700;color:#E9B872">冰山 × 4F × SEL 五大核心：怎麼對應？</div>
+<div style="position:absolute;left:80px;top:122px;font-size:30px;color:#BFD8D5">4F 是「往水面下問」的對話路徑；SEL 五大核心是這個過程中用到的能力。</div>
+<div style="position:absolute;left:80px;top:178px;font-size:30px;font-weight:700;color:#BFD8D5">冰山（看見原因）</div><div style="position:absolute;left:760px;top:178px;font-size:30px;font-weight:700;color:#BFD8D5">4F（對話步驟）</div><div style="position:absolute;left:1340px;top:178px;font-size:30px;font-weight:700;color:#BFD8D5">SEL 五大核心（需要的能力）</div>
+<svg width="1920" height="1080" style="position:absolute;left:0;top:0"><path d="M580,315.0 C670.0,315.0 670.0,290.0 760,290.0" fill="none" stroke="#BFD8D5" stroke-width="6" stroke-linecap="round"/><path d="M580,775.0 C670.0,775.0 670.0,460.0 760,460.0" fill="none" stroke="#BFD8D5" stroke-width="6" stroke-linecap="round"/><path d="M580,545.0 C670.0,545.0 670.0,630.0 760,630.0" fill="none" stroke="#BFD8D5" stroke-width="6" stroke-linecap="round"/><path d="M580,775.0 C670.0,775.0 670.0,630.0 760,630.0" fill="none" stroke="#BFD8D5" stroke-width="6" stroke-linecap="round"/><path d="M1180,290.0 C1260.0,290.0 1260.0,275.0 1340,275.0" fill="none" stroke="#F2A5A5" stroke-width="6" stroke-linecap="round"/><path d="M1180,460.0 C1260.0,460.0 1260.0,410.0 1340,410.0" fill="none" stroke="#E9B872" stroke-width="6" stroke-linecap="round"/><path d="M1180,630.0 C1260.0,630.0 1260.0,545.0 1340,545.0" fill="none" stroke="#8FD1A0" stroke-width="6" stroke-linecap="round"/><path d="M1180,630.0 C1260.0,630.0 1260.0,680.0 1340,680.0" fill="none" stroke="#8FD1A0" stroke-width="6" stroke-linecap="round"/><path d="M1180,800.0 C1260.0,800.0 1260.0,815.0 1340,815.0" fill="none" stroke="#9CC3E8" stroke-width="6" stroke-linecap="round"/></svg>
+<div style="position:absolute;left:80px;top:220px;width:500px;height:190px;background:#FBFBF8;color:#1F2A3A;border-radius:18px;box-sizing:border-box;padding:0 28px;display:flex;flex-direction:column;justify-content:center"><div style="font-size:38px;font-weight:700">第一層：行為表層</div><div style="font-size:26px;margin-top:6px;opacity:.85">看得到的行為</div></div><div style="position:absolute;left:80px;top:450px;width:500px;height:190px;background:#7DB4E6;color:#1F2A3A;border-radius:18px;box-sizing:border-box;padding:0 28px;display:flex;flex-direction:column;justify-content:center"><div style="font-size:38px;font-weight:700">第二層：結構層面</div><div style="font-size:26px;margin-top:6px;opacity:.85">一再重演的模式與環境</div></div><div style="position:absolute;left:80px;top:680px;width:500px;height:190px;background:#2A5C8A;color:#FBFBF8;border-radius:18px;box-sizing:border-box;padding:0 28px;display:flex;flex-direction:column;justify-content:center"><div style="font-size:38px;font-weight:700">第三層：價值信念</div><div style="font-size:26px;margin-top:6px;opacity:.85">心裡相信的、在意的</div></div><div style="position:absolute;left:760px;top:220px;width:420px;height:140px;background:#F2A5A5;color:#1F2A3A;border-radius:18px;box-sizing:border-box;padding:0 28px;display:flex;flex-direction:column;justify-content:center"><div style="font-size:38px;font-weight:700">Facts 事實</div><div style="font-size:26px;margin-top:6px;opacity:.85">說出發生了什麼事</div></div><div style="position:absolute;left:760px;top:390px;width:420px;height:140px;background:#E9B872;color:#1F2A3A;border-radius:18px;box-sizing:border-box;padding:0 28px;display:flex;flex-direction:column;justify-content:center"><div style="font-size:38px;font-weight:700">Feelings 感受</div><div style="font-size:26px;margin-top:6px;opacity:.85">說出內心的感覺</div></div><div style="position:absolute;left:760px;top:560px;width:420px;height:140px;background:#8FD1A0;color:#1F2A3A;border-radius:18px;box-sizing:border-box;padding:0 28px;display:flex;flex-direction:column;justify-content:center"><div style="font-size:38px;font-weight:700">Findings 發現</div><div style="font-size:26px;margin-top:6px;opacity:.85">找出原因與需要</div></div><div style="position:absolute;left:760px;top:730px;width:420px;height:140px;background:#9CC3E8;color:#1F2A3A;border-radius:18px;box-sizing:border-box;padding:0 28px;display:flex;flex-direction:column;justify-content:center"><div style="font-size:38px;font-weight:700">Future 未來</div><div style="font-size:26px;margin-top:6px;opacity:.85">約定具體的下一步</div></div><div style="position:absolute;left:1340px;top:220px;width:500px;height:110px;background:#F2A5A5;color:#1F2A3A;border-radius:18px;box-sizing:border-box;padding:0 28px;display:flex;flex-direction:column;justify-content:center"><div style="font-size:38px;font-weight:700">自我管理</div><div style="font-size:26px;margin-top:6px;opacity:.85">調整情緒與行為</div></div><div style="position:absolute;left:1340px;top:355px;width:500px;height:110px;background:#E9B872;color:#1F2A3A;border-radius:18px;box-sizing:border-box;padding:0 28px;display:flex;flex-direction:column;justify-content:center"><div style="font-size:38px;font-weight:700">自我覺察</div><div style="font-size:26px;margin-top:6px;opacity:.85">認識自己的情緒與價值</div></div><div style="position:absolute;left:1340px;top:490px;width:500px;height:110px;background:#8FD1A0;color:#1F2A3A;border-radius:18px;box-sizing:border-box;padding:0 28px;display:flex;flex-direction:column;justify-content:center"><div style="font-size:38px;font-weight:700">社會覺察</div><div style="font-size:26px;margin-top:6px;opacity:.85">理解他人的立場與感受</div></div><div style="position:absolute;left:1340px;top:625px;width:500px;height:110px;background:#8FD1A0;color:#1F2A3A;border-radius:18px;box-sizing:border-box;padding:0 28px;display:flex;flex-direction:column;justify-content:center"><div style="font-size:38px;font-weight:700">關係技巧</div><div style="font-size:26px;margin-top:6px;opacity:.85">溝通、合作與解決衝突</div></div><div style="position:absolute;left:1340px;top:760px;width:500px;height:110px;background:#9CC3E8;color:#1F2A3A;border-radius:18px;box-sizing:border-box;padding:0 28px;display:flex;flex-direction:column;justify-content:center"><div style="font-size:38px;font-weight:700">負責任決定</div><div style="font-size:26px;margin-top:6px;opacity:.85">考慮後果，做合宜選擇</div></div>
+<div style="position:absolute;left:80px;top:915px;width:1760px;font-size:28px;line-height:1.6"><b style="color:#E9B872">讀法：</b>Facts 說水面上的行為 → Feelings 碰到在意的事 → Findings 找出重演的模式與背後信念 → Future 把新做法帶回水面。</div>
+</section>
+</div>
+<div id="hud"></div>
+<div id="notes"></div>
+<script>// 只需要改這一行：部署 Apps Script 後，把網址（結尾 /exec）貼在這裡。
+// 空白時為試用模式：簡報與問卷都顯示示範數字，不會送出資料。
+const API_URL = "https://script.google.com/macros/s/AKfycbwasPYD2QEGbmexkp91rSts8Z8Dqw2tZLlA__W0qZEPV_aFVeGQKQtcxsJ3LsiD6p6f/exec";
+
+const GROUPS = [
+  {key:"emotion",  name:"情緒", cls:"emo", items:["容易生氣、煩躁","焦慮、緊張","難過、低落","課業升學壓力大","不說出自己的感受","沒有明顯困擾"]},
+  {key:"behavior", name:"行為", cls:"beh", items:["衝動、頂嘴","拖延、要一直催","過度使用手機網路","不遵守規範","遇到困難就逃避","沒有明顯困擾"]},
+  {key:"social",   name:"人際", cls:"soc", items:["與孩子溝通時，經常演變成責備、爭吵或冷戰","與同學容易發生爭執或意見衝突","覺得自己沒有知心朋友，或常感到被孤立","曾遭遇言語嘲諷、排擠、欺負或網路霸凌","不容易表達自己的想法，也不敢拒絕他人的要求","家長與教師對孩子的管教方式或期待不同","近期沒有明顯的人際互動困擾"]}
+];
+const DEMO = {total:20, emotion:[9,7,4,12,10,2], behavior:[6,13,15,7,8,1], social:[11,5,4,3,9,6,3]};
+const isNone = v => v.indexOf("沒有明顯")>-1 || v.indexOf("近期沒有")===0;
+</script>
+<script>
+const NOTES=["開場：今天不是教大家「怎麼管孩子」，而是一起看見彼此。可在此加入自己的開場故事。", "講者介紹：陳彥揚校長，現任北港鎮辰光國小校長，持有 TESOL 教育碩士與嘉義大學教育博士學位，曾任大興國小與興南國小校長，目前在辰光國小推動 SEL。養兒育女的故事請講師自行補上。", "流程時間可依現場人數調整。情境演練可視時間縮短為一個情境。", "請觀眾猜猜看：右邊五句台語智慧，各對應左邊哪一個 SEL 核心？可請家長舉手回答，需要時可點選卡片示範連線（不必完成配對）。答案在下一頁。", "配對答案：知輕重、幾兩重＝知道自己的斤兩與分量（自我覺察）；知吃知穿，知分寸＝懂得節制、拿捏分寸（自我管理）；目色好＝會看場合與臉色、察覺他人感受（社會覺察）；互相、人情留一線＝互相禮讓、凡事留餘地（關係技巧）；做人要有肩胛頭＝敢擔當、負責任（負責任決定）。可依您的說法調整。", "三步驟是一條路：先看見自己，再看見別人，最後一起做。每一個領域都用這三步。", "4F 是 We do 的共同語言：先說事實，再說感受，接著一起找發現，最後約定未來的行動。事實不帶評論；發現是一起找原因，不是找錯；未來要具體到「誰、何時、做什麼」。", "講解：我們多半只處理水面上的行為，所以同樣的衝突一再發生。接下來每個領域都用冰山往下問三次：發生什麼事？這常在什麼情境重演？這件事對你為什麼重要？注意：聽到信念層時不要急著糾正，先說「謝謝你告訴我」。　範例：學校體育館的牆面都是鳥屎。", "請現場人員先確認 QR Code 可掃描。填寫前說明：問卷不記名，只用於安排課程，不做個人診斷。填寫約 3 分鐘，之後開問卷網址加 ?results 投影長條圖。", "在瀏覽器開問卷網址後加 ?results 投影長條圖（每 5 秒更新）。先請家長看三大範圍的前兩名，再帶入下一節：就從最多人勾選的領域開始 I do、You do、We do。", "這一區的重點是：情緒是正常的，重要的是我們怎麼辨識與調節。", "請每位家長先安靜回想 30 秒，再用一句話分享。不必講細節，只說「我通常會…」。", "重點：先問「發生什麼事」，再問「你的感覺是什麼」，最後才談規則。", "請家長回想上一頁寫下的情緒事件，自己用冰山往下問三層。分享時只說最底層那一句。", "（操作：先只顯示四個 4F 標題；再按一下，才會出現下面四段說明。）請全班一起決定家庭版的「冷靜約定」，寫在一張卡片上帶回家，每週檢討一次。", "行為是看得見的，但行為背後的原因更重要。這一區要從「如何讓孩子聽話」走向「如何理解原因」。", "請家長在紙上寫下：最近一次因為規範或拖延而起衝突的事件，只寫一句話。", "提醒家長：拖延不等於不負責任。先確認是哪一種原因，策略才會對。", "行為的改變要從結構層開始：先改環境與約定，再談信念。家長與孩子的信念可能完全不同，請兩邊都問。", "（操作：先只顯示標題與每步的提示詞；再按一下，才出現具體內容。）約定的重點不是處罰，而是一起訂出大家都看得見、做得到的規則。請家長填寫自家的版本。", "人際問題常常是親子、親師與同儕關係的交織。這一區要看見每個人的立場。", "請家長想一個「我最後悔的一次說話方式」，只說一句，不必解釋。", "可請家長、孩子與教師各自用一句話說出「我最希望對方理解我什麼」。", "人際問題最需要雙向理解：請家長想想孩子在同儕和家中各相信什麼。若涉及霸凌，請轉介學校輔導。", "（操作：先只顯示標題與每步的提示詞；再按一下，才出現具體內容。）練習句型可以貼在冰箱上。若衝突持續或涉及霸凌，請轉介學校輔導室。", "請全班用 3 分鐘討論此情境，每組輪流說出一個 We do 的具體做法。", "對應 SEL：自我覺察（先看見孩子的狀態）與社會覺察。重點是先理解原因，再談管理。請家長兩人一組，把「你整天只會玩手機」改寫成一句理解的話。", "這就是 We do：六個問題由家長與孩子一起回答、寫下來。第六題「沒做到怎麼修復」最容易被忽略，請特別強調：約定的重點是修復，不是懲罰。請家長從六題中先選兩題回家和孩子討論。", "（連連看：先點一張 4F 卡片，再點下方相配的 SEL 核心。答案：Facts＝自我管理；Feelings＝自我覺察；Findings＝社會覺察＋關係技巧（要配兩個）；Future＝負責任決定。）教孩子一個簡單流程，在家約定好暗號（例如比一個「停」的手勢）。家長先示範自己的停看聽。「聽」是聽自己的需要，也聽對方的想法，再一起決定接下來怎麼做。可帶家長當場練習一次。", "請講師用 3 至 5 分鐘分享。注意：分享重點是自己的改變，不是批評孩子或另一半。", "巡場時提醒：先聽、不評判；行動要具體，例如「每天晚上 8 點」而不是「多注意」。　【情境題參考】請家長兩人一組約 5 分鐘，從三題中任選一題，依 4F 順序練習，先讓家長自己說，再邀請 1–2 組分享。參考示範——情緒題：事實（我看到你把書包丟在地上，說自己很笨）→感受（你是不是很失望、很挫折？）→發現（這次哪一部分最困難？）→未來（下次考前我們怎麼準備？）。行為題：事實（現在十一點，你還在用手機）→感受（你是不是不想被打斷？我也有點擔心）→發現（睡前為什麼很難放下？）→未來（一起訂出結束時間與提醒方式）。人際題：事實（小明今天在大家面前笑你，對嗎？）→感受（你是不是很丟臉、很生氣？）→發現（你覺得他為什麼這樣？）→未來（你想怎麼跟他說？）。", "結語：陪伴不需要完美，願意一起練習就是最好的開始。", "課後回饋：請家長掃 QR Code 填寫 8 題簡單問卷，不記名，約 3 分鐘。", "冰山、4F、SEL 的對應（我的整理，可依你的講法調整）：Facts＝第一層行為表層＝自我管理；Feelings＝碰到第三層價值信念＝自我覺察；Findings＝看第二層結構與第三層信念＝社會覺察＋關係技巧；Future＝把新做法帶回水面＝負責任決定。"];
+const slides=[...document.querySelectorAll('.slide')];
+const stage=document.getElementById('stage'),hud=document.getElementById('hud'),nb=document.getElementById('notes');
+let cur=0,timer=null;
+function fit(){const s=Math.min(innerWidth/1920,innerHeight/1080);stage.style.transform='scale('+s+')';stage.style.left=(innerWidth-1920*s)/2+'px';stage.style.top=(innerHeight-1080*s)/2+'px'}
+addEventListener('resize',fit);fit();
+
+// 讓 QR Code 永遠指向問卷（本頁旁邊的 index.html）
+const surveyUrl=location.protocol==='file:'?'https://cyysongyy.github.io/sihu-parent-survey/':new URL('./',location.href).href;
+const qb=document.getElementById('qrbox');
+if(qb&&window.QRCode){new QRCode(qb,{text:surveyUrl,width:440,height:440,correctLevel:QRCode.CorrectLevel.M})}
+const FB_URL='https://docs.google.com/forms/d/e/1FAIpQLSd8F8rnhmEcwUJD0DPnwy_Nbtf6wuPnQIWEIsHXqRT6S2xeNA/viewform';
+const qf=document.getElementById('qrfb');
+if(qf&&window.QRCode){new QRCode(qf,{text:FB_URL,width:440,height:440,correctLevel:QRCode.CorrectLevel.M})}
+const ut=document.getElementById('urltxt');if(ut)ut.textContent=surveyUrl.replace(/^https?:\/\//,'');
+
+// 即時長條圖
+async function stats(){
+  if(!API_URL)return DEMO;
+  const r=await fetch(API_URL,{cache:'no-store'});return r.json();
+}
+const COLORS={emo:'#5CC4BD',beh:'#E9B872',soc:'#7DB4E6'};
+async function drawLive(){
+  const box=document.getElementById('live');if(!box)return;
+  let d;try{d=await stats()}catch(e){document.getElementById('livenote').textContent='暫時讀不到資料，稍後自動重試';return}
+  document.getElementById('livetotal').textContent='共 '+d.total+' 位家長';
+  document.getElementById('livenote').textContent=API_URL?'長條越長，勾選人數越多（每 5 秒更新）':'示範數字：尚未連接後端';
+  box.innerHTML='';
+  GROUPS.forEach(g=>{
+    const nums=g.items.map((t,i)=>Array.isArray(d[g.key])?(d[g.key][i]||0):((d[g.key]||{})[t]||0));
+    const max=Math.max(1,...nums);
+    const col=document.createElement('div');col.className='lcol';
+    const h=document.createElement('h3');h.textContent=g.name;h.style.color=COLORS[g.cls];col.append(h);
+    g.items.forEach((t,i)=>{
+      const r=document.createElement('div');r.className='lrow';
+      r.innerHTML='<div class="t"></div><div class="l"><div class="bar"><div class="f"></div></div><div class="n"></div></div>';
+      r.querySelector('.t').textContent=t;
+      const f=r.querySelector('.f');f.style.background=COLORS[g.cls];f.style.width=(nums[i]/max*100)+'%';
+      r.querySelector('.n').textContent=nums[i];
+      col.append(r);
+    });
+    box.append(col);
+  });
+}
+
+const cb=document.getElementById('clearbtn');
+if(cb)cb.addEventListener('click',async e=>{
+  e.stopPropagation();cb.blur();
+  if(!API_URL){alert('試用模式：尚未連接後端，沒有可清除的紀錄。');return}
+  const pin=prompt('請輸入清除密碼（Code.gs 裡的 ADMIN_PIN）');if(pin===null)return;
+  if(!confirm('確定清除所有回覆嗎？舊資料會備份到 Google Sheets 的「已清除」工作表。'))return;
+  try{
+    const r=await fetch(API_URL+'?action=clear&pin='+encodeURIComponent(pin),{cache:'no-store'});const d=await r.json();
+    if(d.ok){await drawLive();alert('已清除，可以重新統計。請家長重新掃描填寫。')}
+    else alert(d.error==='pin'?'密碼錯誤':'清除失敗')
+  }catch(err){alert('清除失敗，請確認網路後再試')}
+});
+
+
+// ===== SEL × 台語智慧 連連看 =====
+const PAIRS=[{core:'自我覺察',desc:'知道自己的情緒與價值',wis:'知輕重、幾兩重',c:'#2A7F7A'},{core:'自我管理',desc:'調整情緒與行為',wis:'知吃知穿，知分寸',c:'#B7791F'},{core:'社會覺察',desc:'理解他人的立場與感受',wis:'目色好',c:'#2A5C8A'},{core:'關係技巧',desc:'溝通、合作與解決衝突',wis:'互相、人情留一線',c:'#8A4F9E'},{core:'負責任決定',desc:'考慮後果，做出合宜選擇',wis:'做人要有肩胛頭',c:'#C2543F'}];
+const G={order:[2,4,3,1,0],matched:new Set(),selL:null,selR:null,tries:0,lock:false,reveal:false};
+const ROW_TOP=250,ROW_H=118,GAP=26,LX=96,RX=1124,CW=700;
+const rowY=r=>ROW_TOP+r*(ROW_H+GAP);
+function gDerange(){let a;do{a=[0,1,2,3,4].sort(()=>Math.random()-.5)}while(a.some((v,i)=>v===i));return a}
+function gDraw(){
+  const box=document.getElementById('game');box.innerHTML='';
+  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.id='glines';box.append(svg);
+  PAIRS.forEach((P,i)=>{
+    const l=document.createElement('div');l.className='gcard';l.dataset.side='L';l.dataset.i=i;
+    l.style.left=LX+'px';l.style.top=rowY(i)+'px';
+    l.innerHTML='<b></b><span></span>';l.querySelector('b').textContent=P.core;l.querySelector('span').textContent=P.desc;
+    box.append(l);
+  });
+  G.order.forEach((pi,r)=>{
+    const P=PAIRS[pi];const d=document.createElement('div');d.className='gcard';d.dataset.side='R';d.dataset.i=pi;
+    d.style.left=RX+'px';d.style.top=rowY(r)+'px';d.innerHTML='<b></b>';d.querySelector('b').textContent=P.wis;
+    box.append(d);
+  });
+  box.querySelectorAll('.gcard').forEach(c=>c.addEventListener('click',()=>gClick(c)));
+  gRefresh();
+}
+function gRefresh(){
+  const box=document.getElementById('game'),svg=document.getElementById('glines');svg.innerHTML='';
+  box.querySelectorAll('.gcard').forEach(c=>{
+    const i=+c.dataset.i,P=PAIRS[i],on=G.matched.has(i)||G.reveal;
+    c.classList.toggle('ok',on);
+    c.classList.toggle('sel',!on&&((c.dataset.side==='L'&&G.selL===i)||(c.dataset.side==='R'&&G.selR===i)));
+    c.style.borderColor=on?P.c:'';c.style.background=on?P.c+'22':'';
+    c.querySelector('b').style.color=on?P.c:'';
+  });
+  PAIRS.forEach((P,i)=>{
+    if(!(G.matched.has(i)||G.reveal))return;
+    const r=G.order.indexOf(i);
+    const ln=document.createElementNS('http://www.w3.org/2000/svg','line');
+    ln.setAttribute('x1',LX+CW);ln.setAttribute('x2',RX);
+    ln.setAttribute('y1',rowY(i)+ROW_H/2);ln.setAttribute('y2',rowY(r)+ROW_H/2);
+    ln.setAttribute('stroke',P.c);ln.setAttribute('stroke-width',8);ln.setAttribute('stroke-linecap','round');
+    svg.append(ln);
+  });
+  const st=document.getElementById('gstatus');
+  if(G.reveal){st.textContent='答案如上，可以和家長一起說說每一句的意思。'}
+  else if(G.matched.size===5){st.textContent='全部配對成功！共嘗試 '+G.tries+' 次'}
+  else st.textContent='已配對 '+G.matched.size+' / 5　嘗試 '+G.tries+' 次';
+}
+function gClick(c){
+  if(G.lock||G.reveal)return;
+  const i=+c.dataset.i;if(G.matched.has(i))return;
+  if(c.dataset.side==='L')G.selL=(G.selL===i?null:i);else G.selR=(G.selR===i?null:i);
+  if(G.selL!==null&&G.selR!==null){
+    G.tries++;
+    if(G.selL===G.selR){G.matched.add(G.selL);G.selL=G.selR=null;gRefresh()}
+    else{
+      G.lock=true;const l=document.querySelector('.gcard[data-side=L][data-i="'+G.selL+'"]'),r=document.querySelector('.gcard[data-side=R][data-i="'+G.selR+'"]');
+      l.classList.add('bad');r.classList.add('bad');G.selL=G.selR=null;gRefresh();
+      setTimeout(()=>{l.classList.remove('bad');r.classList.remove('bad');G.lock=false;gRefresh()},550);
+    }
+  }else gRefresh();
+}
+function gReset(){G.order=gDerange();G.matched=new Set();G.selL=G.selR=null;G.tries=0;G.lock=false;G.reveal=false;gDraw()}
+document.getElementById('gshuffle').addEventListener('click',gReset);
+
+gDraw();
+
+// ===== 手機解方3：4F × SEL 連連看 =====
+const SGC=['自我管理','自我覺察','社會覺察','關係技巧','負責任決定'];
+const SGANS={'自我管理':0,'自我覺察':1,'社會覺察':2,'關係技巧':2,'負責任決定':3};
+const SGCOL=['#F2A5A5','#E9B872','#8FD1A0','#9CC3E8'];
+const SG={selC:null,selK:null,done:new Set(),lock:false,tries:0};
+function sgDraw(){
+  const pool=document.getElementById('sgpool');pool.innerHTML='';
+  document.querySelectorAll('.sgslot').forEach(s=>s.innerHTML='');
+  SG.done=new Set();SG.selC=SG.selK=null;SG.tries=0;SG.lock=false;
+  [...SGC].sort(()=>Math.random()-.5).forEach(k=>{const b=document.createElement('button');b.className='sgchip';b.textContent=k;b.dataset.k=k;b.addEventListener('click',()=>sgPick('K',k,b));pool.append(b)});
+  document.querySelectorAll('.sgc').forEach(c=>{c.onclick=()=>sgPick('C',+c.dataset.c,c)});
+  sgRefresh();
+}
+function sgRefresh(){
+  document.querySelectorAll('.sgc').forEach(c=>c.classList.toggle('sel',SG.selC===+c.dataset.c));
+  document.querySelectorAll('.sgchip').forEach(b=>b.classList.toggle('sel',SG.selK===b.dataset.k));
+  const st=document.getElementById('sgstatus');
+  st.textContent=SG.done.size===5?'全部配對成功！家長的一句話：「停止真的不容易，我們一起練習。」':'已配對 '+SG.done.size+' / 5　嘗試 '+SG.tries+' 次';
+}
+function sgPick(t,v,el){
+  if(SG.lock)return;
+  if(t==='K'&&SG.done.has(v))return;
+  if(t==='C')SG.selC=(SG.selC===v?null:v);else SG.selK=(SG.selK===v?null:v);
+  if(SG.selC!==null&&SG.selK!==null){
+    SG.tries++;const c=SG.selC,k=SG.selK;
+    const cardEl=document.querySelector('.sgc[data-c="'+c+'"]'),chipEl=document.querySelector('.sgchip[data-k="'+k+'"]');
+    SG.selC=SG.selK=null;
+    if(SGANS[k]===c){
+      SG.done.add(k);chipEl.style.display='none';
+      const m=document.createElement('div');m.className='sgmatch';m.textContent=k;m.style.background=SGCOL[c];
+      cardEl.querySelector('.sgslot').append(m);sgRefresh();
+    }else{
+      SG.lock=true;cardEl.classList.add('bad');chipEl.classList.add('bad');sgRefresh();
+      setTimeout(()=>{cardEl.classList.remove('bad');chipEl.classList.remove('bad');SG.lock=false;sgRefresh()},550);
+    }
+  }else sgRefresh();
+}
+document.getElementById('sgshuffle').addEventListener('click',sgDraw);
+sgDraw();
+
+function next(){const r=slides[cur].querySelectorAll('.rv:not(.on)');if(r.length){r.forEach(x=>x.classList.add('on'));return}show(cur+1)}
+function show(i){
+  cur=Math.max(0,Math.min(slides.length-1,i));
+  slides.forEach((s,k)=>s.classList.toggle('on',k===cur));slides[cur].querySelectorAll('.rv').forEach(x=>x.classList.remove('on'));
+  hud.textContent=(cur+1)+' / '+slides.length+'　N 講者備註　F 全螢幕';
+  nb.textContent=NOTES[cur]||'（本頁沒有備註）';
+  history.replaceState(null,'','#'+(cur+1));
+  clearInterval(timer);
+  if(slides[cur].id==='results'){drawLive();timer=setInterval(drawLive,5000)}
+}
+addEventListener('keydown',e=>{
+  if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();next()}
+  else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();show(cur-1)}
+  else if(e.key==='Home')show(0);else if(e.key==='End')show(slides.length-1);
+  else if(e.key==='n'||e.key==='N')nb.classList.toggle('show');
+  else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen()}
+});
+addEventListener('click',e=>{if(nb.contains(e.target)||e.target.closest('#clearbtn')||e.target.closest('.nonav'))return;e.clientX>innerWidth/2?next():show(cur-1)});
+let sx=null;addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
+addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)dx<0?next():show(cur-1);sx=null});
+show((parseInt(location.hash.slice(1))||1)-1);
+</script>
+</body>
+</html>
