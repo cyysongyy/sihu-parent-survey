@@ -27,6 +27,14 @@ html,body{margin:0;height:100%;background:#0E141C;overflow:hidden;font-family:"N
 .lrow .bar{flex:1;height:20px;background:rgba(255,255,255,.14);border-radius:10px;overflow:hidden}
 .lrow .f{height:100%;border-radius:10px;transition:width .6s}
 .lrow .n{width:2.2em;text-align:right;font-size:28px;font-weight:700}
+.gcard{position:absolute;width:700px;height:118px;box-sizing:border-box;border:4px solid #DDE3E1;border-radius:20px;background:#fff;display:flex;flex-direction:column;justify-content:center;padding:0 32px;cursor:pointer;pointer-events:auto;transition:top .4s,background .2s,border-color .2s;font-family:inherit;text-align:left}
+.gcard b{font-size:40px;line-height:1.2}.gcard span{font-size:26px;color:#4A5568;margin-top:4px}
+.gcard.sel{border-color:#1F2A3A;background:#EEF2F6;box-shadow:0 0 0 4px rgba(31,42,58,.15)}
+.gcard.ok{cursor:default}
+.gcard.bad{animation:gshake .5s;border-color:#C2543F;background:#FBE4E4}
+@keyframes gshake{0%,100%{transform:translateX(0)}20%{transform:translateX(-14px)}40%{transform:translateX(14px)}60%{transform:translateX(-10px)}80%{transform:translateX(10px)}}
+.gbtn{font-family:inherit;font-size:28px;padding:12px 28px;border-radius:14px;border:3px solid #1F2A3A;background:#fff;color:#1F2A3A;cursor:pointer}
+#glines{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none}
 </style>
 </head>
 <body>
@@ -71,16 +79,13 @@ html,body{margin:0;height:100%;background:#0E141C;overflow:hidden;font-family:"N
 <tr><td>65–80 分</td><td>總結與 Q&amp;A</td><td>帶走一個可以明天就做的行動</td></tr>
 </table>
 </section>
-<section class="slide" id="sel" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
-<h2 style="font-size:72px;font-weight:700">什麼是 SEL（社會情緒學習）？</h2>
-<p style="font-size:36px;color:#4A5568">認識自己、管理情緒、理解他人、建立關係、負責任地做決定。</p>
-<div style="display:flex;gap:24px;flex:1">
-<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:32px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:36px;font-weight:700;color:#2A7F7A">自我覺察</h3><p style="font-size:28px;line-height:1.5">知道自己的情緒與價值</p></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:32px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:36px;font-weight:700;color:#2A7F7A">自我管理</h3><p style="font-size:28px;line-height:1.5">調整情緒與行為</p></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:32px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:36px;font-weight:700;color:#2A7F7A">社會覺察</h3><p style="font-size:28px;line-height:1.5">理解他人的立場與感受</p></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:32px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:36px;font-weight:700;color:#2A7F7A">關係技巧</h3><p style="font-size:28px;line-height:1.5">溝通、合作與解決衝突</p></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:32px;border:1px solid #DDE3E1;border-radius:16px"><h3 style="font-size:36px;font-weight:700;color:#2A7F7A">負責任決策</h3><p style="font-size:28px;line-height:1.5">考慮後果，做出合宜選擇</p></div>
-</div>
+<section class="slide" id="sel" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif">
+<h2 style="position:absolute;left:96px;top:44px;font-size:56px;font-weight:700">SEL 五大核心 × 台語智慧　連連看</h2>
+<p id="gsub" style="position:absolute;left:96px;top:130px;font-size:32px;color:#4A5568">先點左邊的 SEL 核心，再點右邊相配的台語智慧。</p>
+<div class="nonav" style="position:absolute;right:96px;top:56px;display:flex;gap:16px">
+<button class="gbtn" id="gshuffle">重新洗牌</button><button class="gbtn" id="greveal">看答案</button></div>
+<div id="game" class="nonav" style="position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none"></div>
+<p id="gstatus" style="position:absolute;left:96px;top:985px;font-size:32px;font-weight:700;color:#2A7F7A">已配對 0 / 5</p>
 </section>
 <section class="slide" id="method" style="background:#FBFBF8;color:#1F2A3A;font-family:'Noto Sans TC', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
 <h2 style="font-size:72px;font-weight:700">課程的對話架構：I do → You do → We do</h2>
@@ -356,7 +361,7 @@ html,body{margin:0;height:100%;background:#0E141C;overflow:hidden;font-family:"N
 <div id="notes"></div>
 <script src="config.js"></script>
 <script>
-const NOTES=["開場：今天不是教大家「怎麼管孩子」，而是一起看見彼此。可在此加入自己的開場故事。","講者介紹：陳彥揚校長，現任北港鎮辰光國小校長，持有 TESOL 教育碩士與嘉義大學教育博士學位，曾任大興國小與興南國小校長，目前在辰光國小推動 SEL。養兒育女的故事請講師自行補上。","流程時間可依現場人數調整。情境演練可視時間縮短為一個情境。","五大核心能力是整堂課的共同語言。提醒家長：SEL 不是另外一套技能，而是在日常親子互動中一起練習。","三步驟是一條路：先看見自己，再看見別人，最後一起做。每一個領域都用這三步。","4F 是 We do 的共同語言：先說事實，再說感受，接著一起找發現，最後約定未來的行動。事實不帶評論；發現是一起找原因，不是找錯；未來要具體到「誰、何時、做什麼」。","講解：我們多半只處理水面上的行為，所以同樣的衝突一再發生。接下來每個領域都用冰山往下問三次：發生什麼事？這常在什麼情境重演？這件事對你為什麼重要？注意：聽到信念層時不要急著糾正，先說「謝謝你告訴我」。","請現場人員先確認 QR Code 可掃描。填寫前說明：問卷不記名，只用於安排課程，不做個人診斷。填寫約 3 分鐘，之後開問卷網址加 ?results 投影長條圖。","在瀏覽器開問卷網址後加 ?results 投影長條圖（每 5 秒更新）。先請家長看三大範圍的前兩名，再帶入下一節：就從最多人勾選的領域開始 I do、You do、We do。","這一區的重點是：情緒是正常的，重要的是我們怎麼辨識與調節。","請每位家長先安靜回想 30 秒，再用一句話分享。不必講細節，只說「我通常會…」。","重點：先問「發生什麼事」，再問「你的感覺是什麼」，最後才談規則。","請家長回想上一頁寫下的情緒事件，自己用冰山往下問三層。分享時只說最底層那一句。","請全班一起決定家庭版的「冷靜約定」，寫在一張卡片上帶回家，每週檢討一次。","行為是看得見的，但行為背後的原因更重要。這一區要從「如何讓孩子聽話」走向「如何理解原因」。","請家長在紙上寫下：最近一次因為規範或拖延而起衝突的事件，只寫一句話。","提醒家長：拖延不等於不負責任。先確認是哪一種原因，策略才會對。","行為的改變要從結構層開始：先改環境與約定，再談信念。家長與孩子的信念可能完全不同，請兩邊都問。","約定的重點不是處罰，而是一起訂出大家都看得見、做得到的規則。請家長填寫自家的版本。","人際問題常常是親子、親師與同儕關係的交織。這一區要看見每個人的立場。","請家長想一個「我最後悔的一次說話方式」，只說一句，不必解釋。","可請家長、孩子與教師各自用一句話說出「我最希望對方理解我什麼」。","人際問題最需要雙向理解：請家長想想孩子在同儕和家中各相信什麼。若涉及霸凌，請轉介學校輔導。","練習句型可以貼在冰箱上。若衝突持續或涉及霸凌，請轉介學校輔導室。","請全班用 3 分鐘討論此情境，每組輪流說出一個 We do 的具體做法。","對應 SEL：自我覺察（先看見孩子的狀態）與社會覺察。重點是先理解原因，再談管理。請家長兩人一組，把「你整天只會玩手機」改寫成一句理解的話。","這就是 We do：六個問題由家長與孩子一起回答、寫下來。第六題「沒做到怎麼修復」最容易被忽略，請特別強調：約定的重點是修復，不是懲罰。請家長從六題中先選兩題回家和孩子討論。","教孩子一個簡單流程，在家約定好暗號（例如比一個「停」的手勢）。家長先示範自己的停看聽。「聽」是聽自己的需要，也聽對方的想法，再一起決定接下來怎麼做。可帶家長當場練習一次。","請講師用 3 至 5 分鐘分享。注意：分享重點是自己的改變，不是批評孩子或另一半。","巡場時提醒：先聽、不評判；We do 要具體，例如「每天晚上 8 點」而不是「多注意」。","結語：陪伴不需要完美，願意一起練習就是最好的開始。","課後回饋：請家長掃 QR Code 填寫 8 題簡單問卷，不記名，約 3 分鐘。"];
+const NOTES=["開場：今天不是教大家「怎麼管孩子」，而是一起看見彼此。可在此加入自己的開場故事。", "講者介紹：陳彥揚校長，現任北港鎮辰光國小校長，持有 TESOL 教育碩士與嘉義大學教育博士學位，曾任大興國小與興南國小校長，目前在辰光國小推動 SEL。養兒育女的故事請講師自行補上。", "流程時間可依現場人數調整。情境演練可視時間縮短為一個情境。", "這是 SEL 五大核心的連連看小遊戲：請家長（或請一位家長上台）先點左邊的 SEL 核心，再點右邊相配的台語智慧，配對正確會連線並上色，錯了會搖一下。五句台語的意思（可依您的說法調整）：知輕重、幾兩重＝知道自己的斤兩與分量；知吃知穿，知分寸＝懂得節制、拿捏分寸；目色好＝會看場合與臉色、察覺他人感受；互相、人情留一線＝互相禮讓、凡事留餘地；做人要有肩胛頭＝肩膀擔得起、敢負責。可按「重新洗牌」再玩一次，「看答案」可直接顯示連線。提醒：老祖宗的話，其實就是 SEL。", "三步驟是一條路：先看見自己，再看見別人，最後一起做。每一個領域都用這三步。", "4F 是 We do 的共同語言：先說事實，再說感受，接著一起找發現，最後約定未來的行動。事實不帶評論；發現是一起找原因，不是找錯；未來要具體到「誰、何時、做什麼」。", "講解：我們多半只處理水面上的行為，所以同樣的衝突一再發生。接下來每個領域都用冰山往下問三次：發生什麼事？這常在什麼情境重演？這件事對你為什麼重要？注意：聽到信念層時不要急著糾正，先說「謝謝你告訴我」。", "請現場人員先確認 QR Code 可掃描。填寫前說明：問卷不記名，只用於安排課程，不做個人診斷。填寫約 3 分鐘，之後開問卷網址加 ?results 投影長條圖。", "在瀏覽器開問卷網址後加 ?results 投影長條圖（每 5 秒更新）。先請家長看三大範圍的前兩名，再帶入下一節：就從最多人勾選的領域開始 I do、You do、We do。", "這一區的重點是：情緒是正常的，重要的是我們怎麼辨識與調節。", "請每位家長先安靜回想 30 秒，再用一句話分享。不必講細節，只說「我通常會…」。", "重點：先問「發生什麼事」，再問「你的感覺是什麼」，最後才談規則。", "請家長回想上一頁寫下的情緒事件，自己用冰山往下問三層。分享時只說最底層那一句。", "請全班一起決定家庭版的「冷靜約定」，寫在一張卡片上帶回家，每週檢討一次。", "行為是看得見的，但行為背後的原因更重要。這一區要從「如何讓孩子聽話」走向「如何理解原因」。", "請家長在紙上寫下：最近一次因為規範或拖延而起衝突的事件，只寫一句話。", "提醒家長：拖延不等於不負責任。先確認是哪一種原因，策略才會對。", "行為的改變要從結構層開始：先改環境與約定，再談信念。家長與孩子的信念可能完全不同，請兩邊都問。", "約定的重點不是處罰，而是一起訂出大家都看得見、做得到的規則。請家長填寫自家的版本。", "人際問題常常是親子、親師與同儕關係的交織。這一區要看見每個人的立場。", "請家長想一個「我最後悔的一次說話方式」，只說一句，不必解釋。", "可請家長、孩子與教師各自用一句話說出「我最希望對方理解我什麼」。", "人際問題最需要雙向理解：請家長想想孩子在同儕和家中各相信什麼。若涉及霸凌，請轉介學校輔導。", "練習句型可以貼在冰箱上。若衝突持續或涉及霸凌，請轉介學校輔導室。", "請全班用 3 分鐘討論此情境，每組輪流說出一個 We do 的具體做法。", "對應 SEL：自我覺察（先看見孩子的狀態）與社會覺察。重點是先理解原因，再談管理。請家長兩人一組，把「你整天只會玩手機」改寫成一句理解的話。", "這就是 We do：六個問題由家長與孩子一起回答、寫下來。第六題「沒做到怎麼修復」最容易被忽略，請特別強調：約定的重點是修復，不是懲罰。請家長從六題中先選兩題回家和孩子討論。", "教孩子一個簡單流程，在家約定好暗號（例如比一個「停」的手勢）。家長先示範自己的停看聽。「聽」是聽自己的需要，也聽對方的想法，再一起決定接下來怎麼做。可帶家長當場練習一次。", "請講師用 3 至 5 分鐘分享。注意：分享重點是自己的改變，不是批評孩子或另一半。", "巡場時提醒：先聽、不評判；We do 要具體，例如「每天晚上 8 點」而不是「多注意」。", "結語：陪伴不需要完美，願意一起練習就是最好的開始。", "課後回饋：請家長掃 QR Code 填寫 8 題簡單問卷，不記名，約 3 分鐘。"];
 const slides=[...document.querySelectorAll('.slide')];
 const stage=document.getElementById('stage'),hud=document.getElementById('hud'),nb=document.getElementById('notes');
 let cur=0,timer=null;
@@ -414,6 +419,72 @@ if(cb)cb.addEventListener('click',async e=>{
   }catch(err){alert('清除失敗，請確認網路後再試')}
 });
 
+
+// ===== SEL × 台語智慧 連連看 =====
+const PAIRS=[{core:'自我覺察',desc:'知道自己的情緒與價值',wis:'知輕重、幾兩重',c:'#2A7F7A'},{core:'自我管理',desc:'調整情緒與行為',wis:'知吃知穿，知分寸',c:'#B7791F'},{core:'社會覺察',desc:'理解他人的立場與感受',wis:'目色好',c:'#2A5C8A'},{core:'關係技巧',desc:'溝通、合作與解決衝突',wis:'互相、人情留一線',c:'#8A4F9E'},{core:'負責任決定',desc:'考慮後果，做出合宜選擇',wis:'做人要有肩胛頭',c:'#C2543F'}];
+const G={order:[2,4,3,1,0],matched:new Set(),selL:null,selR:null,tries:0,lock:false,reveal:false};
+const ROW_TOP=250,ROW_H=118,GAP=26,LX=96,RX=1124,CW=700;
+const rowY=r=>ROW_TOP+r*(ROW_H+GAP);
+function gDerange(){let a;do{a=[0,1,2,3,4].sort(()=>Math.random()-.5)}while(a.some((v,i)=>v===i));return a}
+function gDraw(){
+  const box=document.getElementById('game');box.innerHTML='';
+  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.id='glines';box.append(svg);
+  PAIRS.forEach((P,i)=>{
+    const l=document.createElement('div');l.className='gcard';l.dataset.side='L';l.dataset.i=i;
+    l.style.left=LX+'px';l.style.top=rowY(i)+'px';
+    l.innerHTML='<b></b><span></span>';l.querySelector('b').textContent=P.core;l.querySelector('span').textContent=P.desc;
+    box.append(l);
+  });
+  G.order.forEach((pi,r)=>{
+    const P=PAIRS[pi];const d=document.createElement('div');d.className='gcard';d.dataset.side='R';d.dataset.i=pi;
+    d.style.left=RX+'px';d.style.top=rowY(r)+'px';d.innerHTML='<b></b>';d.querySelector('b').textContent=P.wis;
+    box.append(d);
+  });
+  box.querySelectorAll('.gcard').forEach(c=>c.addEventListener('click',()=>gClick(c)));
+  gRefresh();
+}
+function gRefresh(){
+  const box=document.getElementById('game'),svg=document.getElementById('glines');svg.innerHTML='';
+  box.querySelectorAll('.gcard').forEach(c=>{
+    const i=+c.dataset.i,P=PAIRS[i],on=G.matched.has(i)||G.reveal;
+    c.classList.toggle('ok',on);
+    c.classList.toggle('sel',!on&&((c.dataset.side==='L'&&G.selL===i)||(c.dataset.side==='R'&&G.selR===i)));
+    c.style.borderColor=on?P.c:'';c.style.background=on?P.c+'22':'';
+    c.querySelector('b').style.color=on?P.c:'';
+  });
+  PAIRS.forEach((P,i)=>{
+    if(!(G.matched.has(i)||G.reveal))return;
+    const r=G.order.indexOf(i);
+    const ln=document.createElementNS('http://www.w3.org/2000/svg','line');
+    ln.setAttribute('x1',LX+CW);ln.setAttribute('x2',RX);
+    ln.setAttribute('y1',rowY(i)+ROW_H/2);ln.setAttribute('y2',rowY(r)+ROW_H/2);
+    ln.setAttribute('stroke',P.c);ln.setAttribute('stroke-width',8);ln.setAttribute('stroke-linecap','round');
+    svg.append(ln);
+  });
+  const st=document.getElementById('gstatus');
+  if(G.reveal){st.textContent='答案如上，可以和家長一起說說每一句的意思。'}
+  else if(G.matched.size===5){st.textContent='全部配對成功！共嘗試 '+G.tries+' 次'}
+  else st.textContent='已配對 '+G.matched.size+' / 5　嘗試 '+G.tries+' 次';
+}
+function gClick(c){
+  if(G.lock||G.reveal)return;
+  const i=+c.dataset.i;if(G.matched.has(i))return;
+  if(c.dataset.side==='L')G.selL=(G.selL===i?null:i);else G.selR=(G.selR===i?null:i);
+  if(G.selL!==null&&G.selR!==null){
+    G.tries++;
+    if(G.selL===G.selR){G.matched.add(G.selL);G.selL=G.selR=null;gRefresh()}
+    else{
+      G.lock=true;const l=document.querySelector('.gcard[data-side=L][data-i="'+G.selL+'"]'),r=document.querySelector('.gcard[data-side=R][data-i="'+G.selR+'"]');
+      l.classList.add('bad');r.classList.add('bad');G.selL=G.selR=null;gRefresh();
+      setTimeout(()=>{l.classList.remove('bad');r.classList.remove('bad');G.lock=false;gRefresh()},550);
+    }
+  }else gRefresh();
+}
+function gReset(){G.order=gDerange();G.matched=new Set();G.selL=G.selR=null;G.tries=0;G.lock=false;G.reveal=false;gDraw()}
+document.getElementById('gshuffle').addEventListener('click',gReset);
+document.getElementById('greveal').addEventListener('click',()=>{G.reveal=!G.reveal;document.getElementById('greveal').textContent=G.reveal?'繼續玩':'看答案';gRefresh()});
+gDraw();
+
 function show(i){
   cur=Math.max(0,Math.min(slides.length-1,i));
   slides.forEach((s,k)=>s.classList.toggle('on',k===cur));
@@ -430,7 +501,7 @@ addEventListener('keydown',e=>{
   else if(e.key==='n'||e.key==='N')nb.classList.toggle('show');
   else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen()}
 });
-addEventListener('click',e=>{if(nb.contains(e.target)||e.target.closest('#clearbtn'))return;show(e.clientX>innerWidth/2?cur+1:cur-1)});
+addEventListener('click',e=>{if(nb.contains(e.target)||e.target.closest('#clearbtn')||e.target.closest('.nonav'))return;show(e.clientX>innerWidth/2?cur+1:cur-1)});
 let sx=null;addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
 addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)show(dx<0?cur+1:cur-1);sx=null});
 show((parseInt(location.hash.slice(1))||1)-1);
